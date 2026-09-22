@@ -82,6 +82,13 @@
   background: #2a9d8f4d;
 }
 
+.storybook__leaf--3 {
+  right: 2.2rem;
+  bottom: 22%;
+  transform: rotate(40deg);
+  background: #2a9d8f59;
+}
+
 .storybook__star {
   width: 0.7rem;
   height: 0.7rem;
@@ -98,6 +105,12 @@
 .storybook__star--2 {
   right: 4%;
   bottom: 28%;
+}
+
+.storybook__star--3 {
+  right: 6%;
+  top: 48%;
+  opacity: 0.45;
 }
 
 .storybook__flower {
@@ -140,7 +153,9 @@
 @media (max-width: 767px) {
   .storybook__cloud--2,
   .storybook__leaf--2,
+  .storybook__leaf--3,
   .storybook__star--2,
+  .storybook__star--3,
   .storybook__flower--2,
   .storybook__bird--1,
   .storybook__dots {

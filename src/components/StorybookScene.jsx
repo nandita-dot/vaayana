@@ -26,6 +26,8 @@ function StorybookScene() {
       <span className="storybook__shape storybook__flower storybook__flower--1" />
       <span className="storybook__shape storybook__bird storybook__bird--1" />
       <span className="storybook__shape storybook__flower storybook__flower--2" />
+      <span className="storybook__shape storybook__leaf storybook__leaf--3" />
+      <span className="storybook__shape storybook__star storybook__star--3" />
     </div>
   )
 }
