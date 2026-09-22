@@ -1,0 +1,208 @@
+{
+  "id": "lesson-sparrow-garden",
+  "title": "The Sparrow in the Garden",
+  "grade": 2,
+  "language": {
+    "primary": "en",
+    "supportLanguages": ["ml"]
+  },
+  "passage": [
+    {
+      "id": "s1",
+      "text": "In the quiet morning, a small sparrow hopped along the garden path.",
+      "vocabRefs": ["v-sparrow", "v-garden"]
+    },
+    {
+      "id": "s2",
+      "text": "She pecked at tiny seeds that had fallen near the marigold flowers.",
+      "vocabRefs": ["v-seeds"]
+    },
+    {
+      "id": "s3",
+      "text": "A gentle breeze rustled the leaves, and the sparrow paused to listen.",
+      "vocabRefs": ["v-sparrow"]
+    },
+    {
+      "id": "s4",
+      "text": "Then she fluttered up to a low branch and sang a short, happy song.",
+      "vocabRefs": ["v-fluttered"]
+    },
+    {
+      "id": "s5",
+      "text": "The children watching from the window smiled at their little visitor.",
+      "vocabRefs": []
+    }
+  ],
+  "vocabulary": [
+    {
+      "id": "v-sparrow",
+      "word": "sparrow",
+      "emoji": "🐦",
+      "explanation": {
+        "en": "A small brown bird that often lives near people and gardens.",
+        "ml": "ആളുകളുടെ അടുത്തും തോട്ടങ്ങളിലും കാണപ്പെടുന്ന ചെറിയ തവിട്ടുനിറമുള്ള പക്ഷി."
+      },
+      "translations": {
+        "ml": "കുരുവി"
+      },
+      "example": "A sparrow hopped on the garden wall.",
+      "pronunciationHint": "SPAIR-oh"
+    },
+    {
+      "id": "v-garden",
+      "word": "garden",
+      "emoji": "🌿",
+      "explanation": {
+        "en": "A place outdoors where people grow flowers, plants, or food.",
+        "ml": "പൂക്കളും ചെടികളും ഭക്ഷണവും വളർത്തുന്ന പുറത്തുള്ള സ്ഥലം."
+      },
+      "translations": {
+        "ml": "തോട്ടം"
+      },
+      "example": "We planted marigolds in the garden.",
+      "pronunciationHint": "GAR-den"
+    },
+    {
+      "id": "v-seeds",
+      "word": "seeds",
+      "emoji": "🌱",
+      "explanation": {
+        "en": "Tiny parts of a plant that can grow into a new plant if they are cared for.",
+        "ml": "പരിപാലിച്ചാൽ പുതിയ ചെടിയായി വളരുന്ന ചെടിയുടെ ചെറിയ ഭാഗങ്ങൾ."
+      },
+      "translations": {
+        "ml": "വിത്തുകൾ"
+      },
+      "example": "Birds like to eat seeds from the ground.",
+      "pronunciationHint": "seedz"
+    },
+    {
+      "id": "v-fluttered",
+      "word": "fluttered",
+      "emoji": "🪶",
+      "explanation": {
+        "en": "Moved quickly by flapping wings in short, light motions.",
+        "ml": "ചിറകുകൾ ചെറുതായി അടിച്ച് വേഗത്തിൽ ഇളകി നീങ്ങി."
+      },
+      "translations": {
+        "ml": "ചിറകടിച്ചു"
+      },
+      "example": "The bird fluttered from the path up to the branch.",
+      "pronunciationHint": "FLUT-erd"
+    }
+  ],
+  "activities": [
+    {
+      "id": "act-meaning-sparrow",
+      "type": "meaning_choice",
+      "prompt": "What does this word mean?",
+      "targetVocabId": "v-sparrow",
+      "options": [
+        {
+          "id": "act-meaning-sparrow-a",
+          "text": "A small brown bird that lives near gardens",
+          "emoji": "🐦",
+          "correct": true
+        },
+        {
+          "id": "act-meaning-sparrow-b",
+          "text": "A bright garden flower",
+          "emoji": "🌼",
+          "correct": false
+        },
+        {
+          "id": "act-meaning-sparrow-c",
+          "text": "A tool for digging soil",
+          "emoji": "🧰",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "act-find-garden",
+      "type": "find_the_word",
+      "prompt": "Find the word that means a place where people grow flowers, plants, or food.",
+      "options": [
+        {
+          "id": "act-find-garden-a",
+          "text": "sparrow",
+          "emoji": "🐦",
+          "correct": false
+        },
+        {
+          "id": "act-find-garden-b",
+          "text": "garden",
+          "emoji": "🌿",
+          "correct": true
+        },
+        {
+          "id": "act-find-garden-c",
+          "text": "seeds",
+          "emoji": "🌱",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "act-meaning-fluttered",
+      "type": "meaning_choice",
+      "prompt": "What does this word mean?",
+      "targetVocabId": "v-fluttered",
+      "options": [
+        {
+          "id": "act-meaning-fluttered-a",
+          "text": "Sat still without moving",
+          "emoji": "🪨",
+          "correct": false
+        },
+        {
+          "id": "act-meaning-fluttered-b",
+          "text": "Moved quickly by flapping wings lightly",
+          "emoji": "🪶",
+          "correct": true
+        },
+        {
+          "id": "act-meaning-fluttered-c",
+          "text": "Ate every seed on the path",
+          "emoji": "🍽️",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "act-comprehension-visitor",
+      "type": "comprehension",
+      "prompt": "Who smiled at the little visitor?",
+      "options": [
+        {
+          "id": "act-comprehension-visitor-a",
+          "text": "The children watching from the window",
+          "emoji": "👧",
+          "correct": true
+        },
+        {
+          "id": "act-comprehension-visitor-b",
+          "text": "The marigold flowers",
+          "emoji": "🌼",
+          "correct": false
+        },
+        {
+          "id": "act-comprehension-visitor-c",
+          "text": "A passing cat",
+          "emoji": "🐱",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "act-word-challenge",
+      "type": "word_challenge",
+      "prompt": "Do you remember this word?"
+    }
+  ],
+  "meta": {
+    "source": "handwritten-sample",
+    "estimatedMinutes": 4,
+    "theme": "birds-and-nature"
+  }
+}

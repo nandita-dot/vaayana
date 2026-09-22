@@ -1,0 +1,46 @@
+.teacher-preview {
+  animation: screen-enter var(--motion-duration) var(--motion-ease);
+}
+
+.teacher-preview-banner {
+  position: sticky;
+  top: 0;
+  z-index: 4;
+  margin: 0;
+  padding: var(--space-2) var(--space-4);
+  background-color: var(--color-secondary);
+  color: var(--color-text);
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.teacher-preview-footer {
+  position: sticky;
+  bottom: 0;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background-color: var(--color-bg);
+  border-top: 2px solid var(--color-highlight-bg);
+}
+
+.teacher-preview-footer .btn {
+  width: 100%;
+}
+
+.teacher-preview-footer .btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  filter: none;
+}
+
+.teacher-error {
+  margin: 0;
+  color: var(--color-error);
+  font-size: 1.05rem;
+  text-align: center;
+}

@@ -1,0 +1,182 @@
+{
+  "bird": {
+    "emoji": "🐦",
+    "en": "An animal with wings and feathers that can often fly."
+  },
+  "sparrow": {
+    "emoji": "🐦",
+    "en": "A small brown bird that often lives near people and gardens."
+  },
+  "garden": {
+    "emoji": "🌿",
+    "en": "A place outdoors where people grow flowers, plants, or food."
+  },
+  "seeds": {
+    "emoji": "🌱",
+    "en": "Tiny parts of a plant that can grow into a new plant if they are cared for."
+  },
+  "seed": {
+    "emoji": "🌱",
+    "en": "A tiny part of a plant that can grow into a new plant."
+  },
+  "flower": {
+    "emoji": "🌼",
+    "en": "The colorful part of a plant that often has a sweet smell."
+  },
+  "flowers": {
+    "emoji": "🌼",
+    "en": "The colorful parts of plants that often have a sweet smell."
+  },
+  "path": {
+    "emoji": "🚶",
+    "en": "A small road or track that people walk along."
+  },
+  "morning": {
+    "emoji": "🌞",
+    "en": "The early part of the day, after night and before noon."
+  },
+  "children": {
+    "emoji": "👧",
+    "en": "Young boys and girls."
+  },
+  "window": {
+    "emoji": "🪟",
+    "en": "An opening in a wall that you can look through."
+  },
+  "breeze": {
+    "emoji": "💨",
+    "en": "A light, gentle wind."
+  },
+  "leaves": {
+    "emoji": "🍃",
+    "en": "The flat green parts that grow on plants and trees."
+  },
+  "branch": {
+    "emoji": "🌳",
+    "en": "A part of a tree that grows out from the trunk."
+  },
+  "song": {
+    "emoji": "🎵",
+    "en": "Music made with the voice."
+  },
+  "visitor": {
+    "emoji": "👋",
+    "en": "Someone who comes to see a place or a person for a short time."
+  },
+  "fluttered": {
+    "emoji": "🪶",
+    "en": "Moved quickly by flapping wings in short, light motions."
+  },
+  "hopped": {
+    "emoji": "🐇",
+    "en": "Jumped forward in small, quick jumps."
+  },
+  "pecked": {
+    "emoji": "🐤",
+    "en": "Hit something lightly with a beak."
+  },
+  "smiled": {
+    "emoji": "😊",
+    "en": "Made a happy look with the mouth."
+  },
+  "quiet": {
+    "emoji": "🤫",
+    "en": "Making little or no sound."
+  },
+  "small": {
+    "emoji": "🔹",
+    "en": "Not big; little in size."
+  },
+  "tiny": {
+    "emoji": "✨",
+    "en": "Very, very small."
+  },
+  "happy": {
+    "emoji": "😊",
+    "en": "Feeling glad and pleased."
+  },
+  "gentle": {
+    "emoji": "🤍",
+    "en": "Soft, kind, and not rough."
+  },
+  "school": {
+    "emoji": "🏫",
+    "en": "A place where children go to learn."
+  },
+  "teacher": {
+    "emoji": "👩‍🏫",
+    "en": "A person who helps students learn."
+  },
+  "friend": {
+    "emoji": "🤝",
+    "en": "A person you like and enjoy spending time with."
+  },
+  "family": {
+    "emoji": "👨‍👩‍👧",
+    "en": "The people who are closest to you at home."
+  },
+  "water": {
+    "emoji": "💧",
+    "en": "The clear liquid we drink and that fills rivers and rain."
+  },
+  "river": {
+    "emoji": "🏞️",
+    "en": "A long stream of water that flows across the land."
+  },
+  "tree": {
+    "emoji": "🌳",
+    "en": "A tall plant with a trunk, branches, and leaves."
+  },
+  "sun": {
+    "emoji": "☀️",
+    "en": "The bright star that lights and warms the day."
+  },
+  "moon": {
+    "emoji": "🌙",
+    "en": "The round light we often see in the night sky."
+  },
+  "house": {
+    "emoji": "🏡",
+    "en": "A building where people live."
+  },
+  "book": {
+    "emoji": "📖",
+    "en": "Pages with words or pictures that you can read."
+  },
+  "story": {
+    "emoji": "📚",
+    "en": "A tale about people, animals, or places."
+  },
+  "apple": {
+    "emoji": "🍎",
+    "en": "A round fruit that is often red or green."
+  },
+  "food": {
+    "emoji": "🍽️",
+    "en": "What people and animals eat to live and grow."
+  },
+  "plant": {
+    "emoji": "🌱",
+    "en": "A living thing that grows in soil, like a flower or a tree."
+  },
+  "plants": {
+    "emoji": "🌱",
+    "en": "Living things that grow in soil, like flowers or trees."
+  },
+  "rain": {
+    "emoji": "🌧️",
+    "en": "Drops of water that fall from the clouds."
+  },
+  "night": {
+    "emoji": "🌙",
+    "en": "The dark time when the sun is gone."
+  },
+  "day": {
+    "emoji": "🌞",
+    "en": "The time when it is light outside."
+  },
+  "child": {
+    "emoji": "🧒",
+    "en": "A young boy or girl."
+  }
+}

@@ -1,0 +1,82 @@
+.lessons-card {
+  align-items: stretch;
+}
+
+.lessons-file-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}
+
+.lessons-status {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.lessons-status--error {
+  color: var(--color-error);
+}
+
+.lessons-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  text-align: left;
+}
+
+.lessons-item {
+  padding: var(--space-4);
+  background-color: var(--color-highlight-bg);
+  border-radius: var(--radius-card);
+}
+
+.lessons-item__title {
+  margin: 0 0 var(--space-2);
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+}
+
+.lessons-item__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+
+.lessons-item__link {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--color-primary);
+  font: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.utility-link {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.utility-link a {
+  color: var(--color-text);
+}
+
+.utility-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  width: 100%;
+}
+
+.btn--utility {
+  min-height: var(--tap-min);
+  font-size: 1rem;
+  font-weight: 500;
+  padding: var(--space-2) var(--space-4);
+}

@@ -1,0 +1,5 @@
+.progress-card .teacher-error {
+  margin: 0;
+  color: var(--color-error);
+  font-size: 1.05rem;
+}

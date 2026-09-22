@@ -1,0 +1,79 @@
+.reading-page {
+  position: relative;
+  z-index: 1;
+  min-height: 100svh;
+  display: flex;
+  justify-content: center;
+  padding: var(--space-4) var(--space-4) var(--space-8);
+  animation: screen-enter var(--motion-duration) var(--motion-ease);
+}
+
+.reading-column {
+  width: min(680px, 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--space-5);
+  text-align: left;
+}
+
+.reading-toolbar {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.reading-title {
+  margin: 0 0 var(--space-5);
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+}
+
+.passage {
+  font-family: var(--font-body);
+  font-size: max(20px, 1.25rem);
+  line-height: 1.8;
+  color: var(--color-text);
+}
+
+.passage__sentence {
+  margin: 0 0 var(--space-4);
+}
+
+.passage__sentence:last-child {
+  margin-bottom: 0;
+}
+
+.reading-paper {
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.95) inset,
+    0 16px 36px rgba(43, 43, 43, 0.1);
+}
+
+.vocab-word {
+  display: inline;
+  margin: 0;
+  padding: 0.05em 0.28em;
+  border: none;
+  border-radius: 0.35em;
+  background-color: var(--color-highlight-bg);
+  color: inherit;
+  font: inherit;
+  line-height: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--color-primary);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.18em;
+  cursor: pointer;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  box-shadow: 0 1px 0 rgba(42, 157, 143, 0.15);
+  display: inline-block;
+  transition:
+    background-color var(--motion-duration) var(--motion-ease),
+    box-shadow var(--motion-duration) var(--motion-ease);
+}
+
+.vocab-word:hover,
+.vocab-word:focus-visible {
+  background-color: #d7eeea;
+  box-shadow: 0 4px 10px rgba(42, 157, 143, 0.18);
+}

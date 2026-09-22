@@ -1,0 +1,53 @@
+.teacher-upload {
+  width: min(36rem, 100%);
+}
+
+.teacher-dropzone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+  width: 100%;
+  min-height: 14rem;
+  padding: var(--space-6);
+  border: 2px dashed var(--color-primary);
+  border-radius: var(--radius-card);
+  background-color: var(--color-highlight-bg);
+  cursor: pointer;
+  color: inherit;
+  font: inherit;
+  text-align: center;
+  transition: background-color var(--motion-duration) var(--motion-ease),
+    box-shadow var(--motion-duration) var(--motion-ease);
+}
+
+.teacher-dropzone--active {
+  background-color: #fff;
+  box-shadow: var(--shadow-soft);
+}
+
+.teacher-dropzone__title {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+}
+
+.teacher-dropzone__hint {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.teacher-file-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}
+
+.teacher-error {
+  margin: 0;
+  color: var(--color-error);
+  font-size: 1.05rem;
+}

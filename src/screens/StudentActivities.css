@@ -1,0 +1,22 @@
+.activity-page {
+  position: relative;
+  z-index: 1;
+  min-height: 100svh;
+  display: flex;
+  justify-content: center;
+  padding: var(--space-4) var(--space-4) var(--space-8);
+  animation: screen-enter var(--motion-duration) var(--motion-ease);
+}
+
+.reading-toolbar {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.activity-column {
+  width: min(680px, 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--space-5);
+}

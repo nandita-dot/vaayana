@@ -1,0 +1,156 @@
+.storybook {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.storybook__blob {
+  position: absolute;
+  border-radius: 60% 40% 55% 45%;
+  opacity: 0.7;
+  filter: blur(1px);
+}
+
+.storybook__blob--tl {
+  top: -4rem;
+  left: -3rem;
+  width: 14rem;
+  height: 12rem;
+  background: radial-gradient(circle at 30% 30%, #e8f5f3, #f4a26133);
+}
+
+.storybook__blob--br {
+  right: -5rem;
+  bottom: -4rem;
+  width: 16rem;
+  height: 14rem;
+  background: radial-gradient(circle at 70% 40%, #f4a26140, #e8f5f3);
+}
+
+.storybook__dots {
+  position: absolute;
+  inset: 8% 6%;
+  background-image: radial-gradient(#f4a26155 1.2px, transparent 1.3px);
+  background-size: 28px 28px;
+  opacity: 0.5;
+  mask-image: radial-gradient(circle at center, transparent 42%, #000 88%);
+}
+
+.storybook__shape {
+  position: absolute;
+  display: block;
+}
+
+.storybook__cloud {
+  width: 4.6rem;
+  height: 1.7rem;
+  border-radius: 2rem;
+  background: #fff;
+  box-shadow: 1.5rem 0.4rem 0 -0.12rem #fff9;
+  opacity: 0.85;
+}
+
+.storybook__cloud--1 {
+  top: 1.5rem;
+  left: 1.25rem;
+}
+
+.storybook__cloud--2 {
+  top: 4.5rem;
+  right: 1.5rem;
+}
+
+.storybook__leaf {
+  width: 1.1rem;
+  height: 1.8rem;
+  border-radius: 0 80% 0 80%;
+  background: #2a9d8f66;
+  transform: rotate(-25deg);
+}
+
+.storybook__leaf--1 {
+  left: 0.8rem;
+  bottom: 18%;
+}
+
+.storybook__leaf--2 {
+  right: 1.2rem;
+  top: 38%;
+  transform: rotate(20deg);
+  background: #2a9d8f4d;
+}
+
+.storybook__star {
+  width: 0.7rem;
+  height: 0.7rem;
+  background: #f4a261;
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  opacity: 0.55;
+}
+
+.storybook__star--1 {
+  top: 22%;
+  left: 3%;
+}
+
+.storybook__star--2 {
+  right: 4%;
+  bottom: 28%;
+}
+
+.storybook__flower {
+  width: 1.15rem;
+  height: 1.15rem;
+  border-radius: 50%;
+  background: #e07a5f99;
+  box-shadow:
+    0.45rem 0 0 -0.2rem #f4a26199,
+    -0.45rem 0 0 -0.2rem #f4a26199,
+    0 0.45rem 0 -0.2rem #f4a26199,
+    0 -0.45rem 0 -0.2rem #f4a26199;
+}
+
+.storybook__flower--1 {
+  left: 2%;
+  bottom: 6%;
+}
+
+.storybook__flower--2 {
+  right: 3%;
+  bottom: 8%;
+}
+
+.storybook__bird {
+  width: 1.6rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  border: 2px solid #2a9d8f99;
+  border-top: none;
+  border-left: none;
+  transform: rotate(-20deg);
+}
+
+.storybook__bird--1 {
+  right: 8%;
+  top: 14%;
+}
+
+@media (max-width: 767px) {
+  .storybook__cloud--2,
+  .storybook__leaf--2,
+  .storybook__star--2,
+  .storybook__flower--2,
+  .storybook__bird--1,
+  .storybook__dots {
+    display: none;
+  }
+
+  .storybook__blob--tl,
+  .storybook__blob--br {
+    width: 8rem;
+    height: 8rem;
+    opacity: 0.3;
+  }
+}
