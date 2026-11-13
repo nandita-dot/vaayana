@@ -61,14 +61,10 @@ Optional:
 
 ### 1. Clone the repository
 
-Replace `<your-github-username>` with the GitHub account that owns the repository.
-
 ```bash
-git clone https://github.com/<your-github-username>/vaayana.git
+git clone https://github.com/nandita-dot/vaayana.git
 cd vaayana
 ```
-
-If you use a different repository name, use its actual GitHub URL.
 
 ### 2. Set up the backend
 
@@ -139,7 +135,7 @@ http://localhost:8000
 
 Use the actual URLs printed by the development servers and ensure the frontend API configuration points to the backend URL.
 
-### 4. Optional environment configuration
+### 4. Optional environment configuration(not necessary for the current version)
 
 Some features, especially AI-assisted lesson preparation, may require environment variables.
 
@@ -186,23 +182,14 @@ VAAYANA is designed so that classroom use does not depend on continuous internet
 - Approved lesson content is stored locally.
 - The application uses local persistence for lesson data and browser-side caching.
 - Interactive activity logic is intended to run on the device.
-- AI-assisted content preparation is an optional workflow and requires internet access.
+- AI-assisted content preparation is an optional workflow and requires internet access.(will be implemented soon)
 
-The precise offline behaviour depends on the current implementation and should be tested after a clean local installation.
-
-## Data, privacy, and security
-
-- Do not commit `.env` files, API keys, credentials, or private configuration.
-- Do not commit local SQLite databases or real classroom uploads.
-- Do not add identifiable student information to sample data, screenshots, or issue reports.
-- Keep any source textbooks or copyrighted teaching materials out of the public repository unless you have permission to redistribute them.
-- Review all files before making the repository public.
 
 ## Documentation
 
-See [`PROJECT_DOCUMENTATION.md`](PROJECT_DOCUMENTATION.md) for the project overview, architecture, workflows, local data design, offline approach, and development notes.
+See [`PROJECT_DOCUMENTATION.md`](PROJECT_DOCUMENTATION.md) for the project overview, architecture, workflows, local data design, offline approach, and development notes. (meant mainly for the developer's reference)
 
-## Development notes
+## Development notes(for developer only)
 
 Before submitting changes:
 

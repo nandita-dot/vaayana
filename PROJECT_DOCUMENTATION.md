@@ -1,6 +1,6 @@
 # VAAYANA (വായന) — Project Documentation
 
-> This document describes the intended product, current architectural direction, and development constraints. It is not a substitute for inspecting the implementation. Update the implementation-status notes whenever the code changes.
+> This document describes the intended product, current architectural direction, and development constraints. It is not a substitute for inspecting the implementation. 
 
 ## 1. Project overview
 
@@ -19,11 +19,10 @@ The initial beta is designed to run locally on a school computer. It is not inte
 - Input: touchscreen and mouse; keyboard support where useful.
 - Initial deployment model: local application, tested in one school before considering broader rollout.
 
-The interface should use large text, clear visual hierarchy, generous touch targets, and simple instructions.
 
 ## 3. Curriculum scope
 
-The current development focus is Grade 4 Mathematics.
+The current development focus is Grade 4 Mathematics and EVS.
 
 ### Chapter sequence
 
@@ -36,7 +35,6 @@ The current development focus is Grade 4 Mathematics.
 | 5 | It's Time! | Hours, minutes, seconds, elapsed time, calendar mathematics | Planned / in development |
 | 6 | Decreasing Numbers | Abacus subtraction, written subtraction, regrouping, Indian currency | Planned / in development |
 
-Do not mark a chapter complete solely because its React component exists. Completion requires lesson registration, renderer integration, access through the classroom UI, and browser testing.
 
 ## 4. Learning and interaction principles
 
@@ -75,7 +73,7 @@ Responsibilities:
 - FastAPI
 - PyMuPDF for PDF text extraction
 - Tesseract OCR where installed and required
-- Google Gemini integration for optional AI-assisted lesson preparation
+- Google Gemini integration for optional AI-assisted lesson preparation(need to be implemented)
 
 Responsibilities:
 
@@ -90,7 +88,6 @@ Responsibilities:
 - SQLite: local structured application and lesson data.
 - IndexedDB: browser-side persistence/cache for appropriate client data.
 
-The actual schema and ownership of each data type must be confirmed from the current backend models and frontend storage implementation.
 
 ## 6. High-level architecture
 
@@ -116,7 +113,7 @@ Classroom activities run in the frontend and should not require
 a network request for each interaction.
 ```
 
-This is the intended architectural model. Confirm the actual API routes, storage boundaries, and service names in the code before making implementation-level changes.
+This is the intended architectural model. 
 
 ## 7. Teacher workflow
 
@@ -204,7 +201,7 @@ Verify each one in the current repository and running app before describing it a
 - Live total calculation.
 - Making amounts, comparing collections, shopping, and calculating change.
 
-Currency illustrations should be educational representations, not misleading replicas of banknotes.
+Currency illustrations are educational representations, not misleading replicas of banknotes.
 
 ## 9. Sound design
 
@@ -227,7 +224,6 @@ Requirements:
 - Stop activity audio when the activity ends or the user navigates away.
 - Respect browser autoplay restrictions and reduced-motion/accessibility preferences.
 
-Verify that this system is implemented before claiming it is available.
 
 ## 10. Visual design system
 
@@ -237,7 +233,6 @@ The current visual direction uses:
 |---|---|
 | Primary dark background | `#111713` |
 | Soft foreground | `#F1F4EE` |
-| Lime accent | `#9ACD32` |
 | Activity accents | Blue, yellow, orange, red |
 
 Design principles:
