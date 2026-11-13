@@ -213,8 +213,45 @@ Before submitting changes:
 5. Verify that interactive activities are reachable from the actual lesson interface—not merely present as unused component files.
 6. Confirm that no secrets, local databases, private textbook files, or personal data are included in the commit.
 
-## License
 
-No license has been specified yet. Unless a license is added, the repository remains under the default copyright terms and others do not automatically receive permission to reuse, modify, or distribute the code.
+## License & Usage Rights
 
-Add a license only after deciding how you want the project to be used.
+**VAAYANA (വായന) is proprietary software developed specifically for ALP School Koottala, Kerala.**
+
+Copyright © 2026 [Nandita Nair]. All rights reserved.
+
+The software is provided to ALP School Koottala under a limited, non-exclusive, non-transferable licence for internal educational and classroom use.
+
+### Permitted Use
+- Classroom teaching and learning activities at ALP School Koottala.
+- Installation and use on authorised school devices and smartboards.
+- Local backups for operational continuity.
+- Creation, editing and management of educational lesson content by authorised teachers.
+
+### Restrictions
+Without prior written permission from the copyright owner, you may not:
+
+- Copy, redistribute, publish or resell this software.
+- Reuse the source code, application design or original components in another project.
+- Distribute the software to other schools, institutions or organisations.
+- Modify and redistribute derivative versions of the software.
+- Claim ownership of the original software or its components.
+
+### Third-Party Components
+VAAYANA uses third-party libraries, frameworks, fonts and other resources that remain subject to their respective licences. Their individual licensing terms continue to apply.
+
+### Licensing Enquiries
+For permission to reuse, distribute, adapt or deploy VAAYANA in another institution, contact:
+
+**Developer:** [Nandita Nair]  
+**Email:** [nanditanair1805@gmail.com]
+
+See the [`LICENSE`](./LICENSE) file for the complete licensing terms.
+
+---
+
+## Project Status(in-progress)
+
+VAAYANA is being developed as a school-specific, offline-first educational platform. Its features and educational content are designed around the teaching requirements of ALP School Koottala.
+
+The project is intended for controlled school use rather than public redistribution.
