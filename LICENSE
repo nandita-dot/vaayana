@@ -2,52 +2,92 @@
 
 Copyright © 2026 Nandita Nair. All rights reserved.
 
-VAAYANA is proprietary software developed specifically for ALP School, Koottala, Erimayur, Alathur, Palakkad, Kerala.
+VAAYANA (വായന) is proprietary software developed specifically for ALP School, Koottala, Erimayur, Alathur, Palakkad, Kerala.
+
+No rights to the software are granted except those expressly stated in this licence.
 
 ---
 
-## 1. Ownership
+## 1. Ownership and Intellectual Property
 
-All rights, title and interest in the original software, source code, architecture, design, and original educational interactive components remain with the developer, except for third-party materials governed by their respective licences.
+All rights, title and interest in the original VAAYANA software, including its source code, architecture, application design, original visual assets, and original educational interactive components, remain the exclusive property of Nandita Nair.
+
+Providing the school with access to or a copy of the software does not constitute a transfer of ownership or intellectual property rights.
+
+Third-party components remain the property of their respective owners and are governed by their own licences.
 
 ## 2. Grant of Licence
 
-The developer grants ALP School Koottala a limited, non-exclusive, non-transferable licence to use VAAYANA solely for its internal educational and classroom activities.
+The developer grants ALP School Koottala a limited, non-exclusive, non-transferable, non-sublicensable licence to use VAAYANA solely for the school's internal educational and classroom activities.
 
-The licence permits:
-- Installation and use on the school's authorised devices and smartboards.
-- Local backups for operational continuity.
-- Use by authorised teachers and school staff.
-- Creation, editing and storage of lesson content for classroom instruction.
+This licence permits:
 
-## 3. Restrictions
+- Installation and use on authorised school computers, smartboards and other school-owned or school-authorised devices.
+- Use by the school's authorised teachers and staff.
+- Local backups for operational continuity and recovery.
+- Creation, editing, storage and use of educational lesson content for classroom instruction.
+- Internal use of the software without requiring additional per-user licences.
 
-Without prior written permission from the copyright owner, the school and its users shall not:
-- Redistribute, publish, sell, sublicense or commercially exploit VAAYANA.
-- Provide copies of the software or its source code to other schools, organisations or third parties.
-- Repackage, reproduce or create derivative software products from the original source code.
-- Remove copyright notices or misrepresent ownership of the software.
-- Make the software publicly available for download or distribution.
+This permission does not extend to other schools, institutions, organisations or individuals.
+
+## 3. Restrictions on Use and Distribution
+
+Without prior written permission from the copyright owner, no person or organisation may:
+
+- Copy, redistribute, publish, sell, rent, sublicense or commercially exploit VAAYANA.
+- Share, distribute or provide copies of the software or its source code to other schools, institutions, organisations or unauthorised third parties.
+- Reuse the original source code, architecture, application design or original interactive components in another software product or project.
+- Modify, adapt, reverse engineer or create derivative software products based on VAAYANA for redistribution or external use.
+- Remove, alter or conceal copyright notices or ownership information.
+- Upload or make the software or its source code publicly available for download, distribution or reuse.
+- Claim ownership of the original software or represent it as their own work.
+
+The restrictions above do not prohibit activities expressly permitted under this licence or rights that cannot legally be restricted.
 
 ## 4. Third-Party Components
 
-Third-party libraries, frameworks, fonts, images and other assets remain subject to their respective licences. This licence does not override those terms.
+VAAYANA may incorporate third-party libraries, frameworks, fonts, images, icons and other resources.
+
+Such components remain subject to their respective copyright notices and licensing terms. Nothing in this licence overrides or restricts rights granted by the licences of those components.
 
 ## 5. Termination
 
-The licence may be terminated in accordance with a separate written agreement between the developer and the school. Upon termination, the school must discontinue use and delete unauthorised copies, subject to any separately agreed archival arrangements.
+The licence may be terminated in accordance with a separate written agreement between the developer and the school, or where permitted by applicable law.
 
-## 6. No Transfer of Ownership
+Upon termination, the school must discontinue use of VAAYANA and delete copies that it is no longer authorised to retain, subject to any separately agreed archival arrangements and applicable legal requirements.
 
-Providing the school with a copy of VAAYANA does not transfer ownership of the software or its intellectual property rights.
+## 6. No Warranty
 
-## 7. Contact
+VAAYANA is provided on an "AS IS" basis, without warranties of any kind, to the extent permitted by applicable law.
 
-For permissions, additional installations, redistribution requests or licensing enquiries, contact:
+The developer does not guarantee uninterrupted availability, error-free operation or suitability for every particular educational purpose.
 
-Nandita Nair  
-Email: nanditanair1805@gmail.com
+## 7. Permissions and Additional Licensing
+
+Any request to:
+
+- Deploy VAAYANA at another school or institution.
+- Distribute or publish the software.
+- Reuse or adapt its original source code or components.
+- Commercially exploit or create derivative products from the software.
+
+Must receive prior written permission from the copyright owner.
+
+Additional permissions or licensing arrangements may be agreed upon separately in writing.
+
+## 8. Governing Law
+
+This licence shall be governed by the laws of India, subject to applicable intellectual property legislation.
+
+## 9. Contact
+
+For licensing permissions, additional installations, redistribution requests or other enquiries, contact:
+
+**Copyright Owner:** Nandita Nair  
+**Email:** nanditanair1805@gmail.com
 
 ---
 
-*Unauthorised reproduction, redistribution or commercial exploitation of the original software is prohibited.*
+All rights reserved.
+
+Unauthorised reproduction, redistribution or use of the original VAAYANA software outside the permissions granted by this licence is prohibited.
