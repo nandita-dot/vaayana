@@ -105,3 +105,4 @@ backend/data/**/*.pdf
 
 # Generated audit reports
 /acceptance_audit_report.txt
+docs/
