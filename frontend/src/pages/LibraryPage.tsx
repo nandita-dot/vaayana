@@ -141,12 +141,12 @@ export const LibraryPage: React.FC = () => {
       {/* Toast Status Notice */}
       {statusMessage && (
         <div className={`p-4 rounded-2xl flex items-center justify-between text-sm font-semibold shadow-card animate-fadeIn ${statusMessage.type === 'success'
-            ? 'bg-vaayana-darkSurface text-vaayana-lime border border-vaayana-lime/40'
-            : 'bg-rose-950/80 text-rose-200 border border-rose-800'
+            ? 'bg-[#17151B] text-[#EDE5F7] border border-[#7950B8]/40'
+            : 'bg-rose-950/60 text-rose-200 border border-rose-800'
           }`}>
           <div className="flex items-center gap-2">
             {statusMessage.type === 'success' ? (
-              <CheckCircle2 className="w-5 h-5 text-vaayana-lime" />
+              <CheckCircle2 className="w-5 h-5 text-[#7950B8]" />
             ) : (
               <AlertCircle className="w-5 h-5 text-rose-400" />
             )}
@@ -157,18 +157,18 @@ export const LibraryPage: React.FC = () => {
       )}
 
       {/* Library Top Banner */}
-      <div className="bg-vaayana-darkSurface p-6 sm:p-8 rounded-3xl border border-vaayana-darkBorder shadow-darkCard flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+      <div className="bg-[#111114] p-6 sm:p-8 rounded-3xl border border-[#2E263B] shadow-2xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
         <div className="space-y-1">
           <div className="flex items-center gap-2.5">
-            <BookOpen className="w-6 h-6 text-vaayana-lime" />
-            <h1 className="text-2xl sm:text-3xl font-black text-vaayana-textLight">
+            <BookOpen className="w-6 h-6 text-[#7950B8]" />
+            <h1 className="text-2xl sm:text-3xl font-black text-[#EDE5F7]">
               {language === 'ml' ? 'ലോക്കൽ പാഠശാല ലൈബ്രറി' : 'Local Lesson Library'}
             </h1>
-            <span className="hidden sm:inline-flex items-center gap-1 text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-vaayana-darkElevated text-vaayana-lime border border-vaayana-lime/30">
-              <CheckCircle2 className="w-3 h-3 text-vaayana-lime" /> Offline Ready
+            <span className="hidden sm:inline-flex items-center gap-1 text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-[#1D1A24] text-[#A881E6] border border-[#7950B8]/30">
+              <CheckCircle2 className="w-3 h-3 text-[#7950B8]" /> Offline Ready
             </span>
           </div>
-          <p className="text-xs sm:text-sm text-vaayana-textLightMuted font-medium">
+          <p className="text-xs sm:text-sm text-[#A59CB5] font-medium">
             {language === 'ml'
               ? 'നിങ്ങളുടെ ഉപകരണത്തിലെ SQLite & IndexedDB-ൽ സൂക്ഷിച്ച പാഠങ്ങൾ. ഇന്റർനെറ്റ് ഇല്ലാതെയും പ്രവർത്തിക്കും.'
               : 'Lessons stored locally in SQLite and browser IndexedDB. Fully accessible without internet.'}
@@ -179,15 +179,15 @@ export const LibraryPage: React.FC = () => {
         <div className="flex flex-wrap items-center gap-2.5">
           <button
             onClick={handleExportAll}
-            className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-vaayana-darkElevated hover:bg-vaayana-darkBorder text-vaayana-textLight text-xs sm:text-sm font-bold border border-vaayana-darkBorder transition-all shadow-sm"
+            className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#17151B] hover:bg-[#1D1A24] text-[#EDE5F7] text-xs sm:text-sm font-bold border border-[#2E263B] transition-all shadow-xs"
             title="Download JSON backup of all saved lessons"
           >
-            <Download className="w-4 h-4 text-vaayana-lime" />
+            <Download className="w-4 h-4 text-[#7950B8]" />
             <span>{language === 'ml' ? 'ബാക്കപ്പ് എടുക്കുക' : 'Export All'}</span>
           </button>
 
-          <label className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-vaayana-darkElevated hover:bg-vaayana-darkBorder text-vaayana-textLight text-xs sm:text-sm font-bold border border-vaayana-darkBorder transition-all shadow-sm cursor-pointer">
-            <Upload className="w-4 h-4 text-vaayana-lime" />
+          <label className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#17151B] hover:bg-[#1D1A24] text-[#EDE5F7] text-xs sm:text-sm font-bold border border-[#2E263B] transition-all shadow-xs cursor-pointer">
+            <Upload className="w-4 h-4 text-[#7950B8]" />
             <span>{language === 'ml' ? 'പാഠങ്ങൾ ചേർക്കുക' : 'Import JSON'}</span>
             <input
               type="file"
@@ -199,7 +199,7 @@ export const LibraryPage: React.FC = () => {
 
           <button
             onClick={handleResetDefaults}
-            className="flex items-center gap-1.5 px-3 py-2.5 rounded-xl hover:bg-rose-900/30 text-vaayana-textLightMuted hover:text-rose-400 text-xs font-semibold transition-all border border-transparent hover:border-rose-800"
+            className="flex items-center gap-1.5 px-3 py-2.5 rounded-xl hover:bg-rose-950/40 text-neutral-400 hover:text-rose-400 text-xs font-semibold transition-all border border-transparent hover:border-rose-900/60"
             title="Reset to original SCERT sample pack"
           >
             <RotateCcw className="w-4 h-4" />
@@ -210,25 +210,25 @@ export const LibraryPage: React.FC = () => {
 
       {/* Search Bar */}
       <div className="relative">
-        <Search className="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2 text-vaayana-textLightMuted" />
+        <Search className="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2 text-[#A59CB5]" />
         <input
           type="text"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder={t('searchPlaceholder')}
-          className="w-full pl-12 pr-4 py-3.5 rounded-2xl border border-vaayana-darkBorder bg-vaayana-darkSurface text-base text-vaayana-textLight shadow-darkCard focus:outline-none focus:ring-2 focus:ring-vaayana-lime"
+          className="w-full pl-12 pr-4 py-3.5 rounded-2xl border border-[#2E263B] bg-[#17151B] text-base text-[#EDE5F7] shadow-sm focus:outline-none focus:ring-2 focus:ring-[#7950B8] placeholder:text-[#A59CB5]"
         />
       </div>
 
       {/* Lessons List */}
       <div className="space-y-4">
         {filtered.length === 0 ? (
-          <div className="bg-vaayana-darkSurface p-12 rounded-3xl border border-dashed border-vaayana-darkBorder text-center space-y-4">
-            <BookOpen className="w-12 h-12 text-vaayana-textLightMuted mx-auto" />
-            <p className="text-vaayana-textLightMuted font-medium">{t('noLessonsFound')}</p>
+          <div className="bg-[#111114] p-12 rounded-3xl border border-dashed border-[#2E263B] text-center space-y-4">
+            <BookOpen className="w-12 h-12 text-[#A59CB5] mx-auto" />
+            <p className="text-[#A59CB5] font-medium">{t('noLessonsFound')}</p>
             <button
               onClick={handleResetDefaults}
-              className="px-5 py-2.5 rounded-xl bg-vaayana-lime text-vaayana-dark font-black text-sm shadow-limeGlow"
+              className="px-5 py-2.5 rounded-xl bg-[#7950B8] hover:bg-[#8C63D0] text-white font-black text-sm shadow-md"
             >
               Restore SCERT Sample Pack
             </button>
@@ -244,42 +244,48 @@ export const LibraryPage: React.FC = () => {
                 <motion.div
                   key={lesson.id}
                   whileHover={{ y: -4 }}
-                  className="bg-vaayana-soft rounded-3xl border border-vaayana-softBorder shadow-soft flex flex-col justify-between p-6 group"
+                  className="bg-[#17151B] rounded-3xl border border-[#2E263B] shadow-darkCard flex flex-col justify-between p-6 group hover:border-[#7950B8]/50 transition-all"
                 >
                   <div className="space-y-3">
                     <div className="flex items-center justify-between text-xs">
-                      <span className="px-2.5 py-1 rounded-full bg-vaayana-dark text-vaayana-lime font-black">
+                      <span className={`px-2.5 py-1 rounded-full font-black text-[11px] border ${
+                        lesson.subject.toLowerCase().includes('math')
+                          ? 'bg-[#FFD166]/15 text-[#FFD166] border-[#FFD166]/40'
+                          : lesson.subject.toLowerCase().includes('env') || lesson.subject.toLowerCase().includes('evs')
+                          ? 'bg-[#72D6B0]/15 text-[#72D6B0] border-[#72D6B0]/40'
+                          : 'bg-[#1D1A24] text-[#A881E6] border-[#7950B8]/30'
+                      }`}>
                         {lesson.subject}
                       </span>
-                      <span className="font-bold text-vaayana-textDarkMuted">
+                      <span className="font-bold text-[#A59CB5]">
                         v{lesson.version || 1} • {lesson.slides?.length || 0} Slides
                       </span>
                     </div>
 
-                    <h3 className={`text-xl font-black text-vaayana-textDark line-clamp-2 ${language === 'ml' ? 'font-malayalam' : ''}`}>
+                    <h3 className={`text-xl font-black text-[#EDE5F7] line-clamp-2 ${language === 'ml' ? 'font-malayalam' : ''}`}>
                       {title}
                     </h3>
 
-                    <p className={`text-xs text-vaayana-textDarkMuted line-clamp-2 leading-relaxed ${language === 'ml' ? 'font-malayalam' : ''}`}>
+                    <p className={`text-xs text-[#E8DDC8] line-clamp-2 leading-relaxed ${language === 'ml' ? 'font-malayalam' : ''}`}>
                       {desc}
                     </p>
                   </div>
 
-                  <div className="pt-6 border-t border-vaayana-softMuted mt-4 space-y-3">
+                  <div className="pt-6 border-t border-[#2E263B] mt-4 space-y-3">
                     {/* Launch Button */}
                     <button
                       onClick={() => navigate(`/lesson/${lesson.id}`)}
-                      className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-2xl bg-vaayana-dark hover:bg-[#1b261f] text-vaayana-lime font-black text-xs sm:text-sm shadow-soft transition-all"
+                      className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-2xl bg-[#563580] hover:bg-[#683FA7] text-white font-black text-xs sm:text-sm shadow-md shadow-purple-950/40 transition-all active:scale-95"
                     >
-                      <Tv className="w-4 h-4 text-vaayana-lime" />
+                      <Tv className="w-4 h-4 text-white" />
                       <span>{language === 'ml' ? 'ക്ലാസ്സിൽ അവതരിപ്പിക്കുക' : 'Launch Classroom'}</span>
                     </button>
 
                     {/* Secondary Actions */}
-                    <div className="flex items-center justify-between text-xs text-vaayana-textDarkMuted pt-1">
+                    <div className="flex items-center justify-between text-xs text-[#A59CB5] pt-1">
                       <button
                         onClick={(e) => handleExportSingle(lesson, e)}
-                        className="flex items-center gap-1 hover:text-vaayana-dark font-bold transition-colors"
+                        className="flex items-center gap-1 hover:text-[#EDE5F7] font-bold transition-colors"
                         title="Download JSON file for this lesson"
                       >
                         <Download className="w-3.5 h-3.5" />
@@ -296,7 +302,7 @@ export const LibraryPage: React.FC = () => {
                           </button>
                           <button
                             onClick={() => setConfirmDeleteId(null)}
-                            className="text-slate-400 hover:text-slate-600 text-[11px]"
+                            className="text-neutral-400 hover:text-neutral-200 text-[11px]"
                           >
                             Cancel
                           </button>
@@ -304,7 +310,7 @@ export const LibraryPage: React.FC = () => {
                       ) : (
                         <button
                           onClick={() => setConfirmDeleteId(lesson.id)}
-                          className="flex items-center gap-1 hover:text-rose-600 font-bold transition-colors"
+                          className="flex items-center gap-1 hover:text-rose-400 font-bold transition-colors"
                           title="Delete lesson from library"
                         >
                           <Trash2 className="w-3.5 h-3.5" />

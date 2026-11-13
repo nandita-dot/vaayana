@@ -26,6 +26,21 @@ import { CalendarMathematics } from './activities/CalendarMathematics';
 import { AbacusSubtraction } from './activities/AbacusSubtraction';
 import { WrittenSubtractionBoard } from './activities/WrittenSubtractionBoard';
 import { IndianCurrencyExplorer } from './activities/IndianCurrencyExplorer';
+import { SolidLiquidGasClassifier } from './activities/SolidLiquidGasClassifier';
+import { LiquidShapeExplorer } from './activities/LiquidShapeExplorer';
+import { HeatingCoolingSimulator } from './activities/HeatingCoolingSimulator';
+import { AirOccupiesSpaceDemo } from './activities/AirOccupiesSpaceDemo';
+import { SolarSystemSimulator } from './activities/SolarSystemSimulator';
+import { RotationRevolutionSimulator } from './activities/RotationRevolutionSimulator';
+import { MoonPhasesSimulator } from './activities/MoonPhasesSimulator';
+import { MoonExplorationViewer } from './activities/MoonExplorationViewer';
+import { DirectionCompassActivity } from './activities/DirectionCompassActivity';
+import { VillageNavigationMap } from './activities/VillageNavigationMap';
+import { MagneticCompassDemo } from './activities/MagneticCompassDemo';
+import { MapSymbolsExplorer } from './activities/MapSymbolsExplorer';
+import { KeralaGeographyExplorer } from './activities/KeralaGeographyExplorer';
+import { BackwatersExplorer } from './activities/BackwatersExplorer';
+import { EducationalVideo } from './EducationalVideo';
 import { EmphasisWordAnimator } from './animations/EmphasisWordAnimator';
 import { ConceptAnimator } from './animations/ConceptAnimator';
 import { 
@@ -66,29 +81,35 @@ export const InteractiveSlideView: React.FC<InteractiveSlideViewProps> = ({
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
-      className="bg-vaayana-soft rounded-4xl p-6 sm:p-10 border border-vaayana-softBorder shadow-lifted space-y-6 select-none transition-all duration-300"
+      className="bg-[#111114] rounded-4xl p-6 sm:p-10 border border-[#2E263B] shadow-2xl space-y-6 select-none transition-all duration-300"
       style={{ fontSize: `${fontScale * 100}%` }}
     >
       
       {/* Slide Header & Bilingual Switch */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-vaayana-softMuted">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-[#2E263B]">
         <div>
           <div className="flex items-center gap-2">
-            <span className="text-xs font-black uppercase tracking-wider text-vaayana-dark bg-vaayana-lime px-3 py-1 rounded-full shadow-sm">
+            <span className={`text-xs font-black uppercase tracking-wider px-3 py-1 rounded-full shadow-xs border ${
+              (slide.slideType || '').includes('activity') || (slide.visualType || '').includes('activity') || (slide.interactiveModule || '') !== ''
+                ? 'bg-[#F5A6C8]/20 text-[#F5A6C8] border-[#F5A6C8]/40'
+                : (slide.slideType || '').includes('grounding')
+                ? 'bg-[#FFD166]/20 text-[#FFD166] border-[#FFD166]/40'
+                : 'bg-[#7950B8] text-white border-[#7950B8]'
+            }`}>
               {slide.slideType ? slide.slideType.replace('_', ' ') : (slide.visualType || 'concept').replace('_', ' ')}
             </span>
             {slide.sourcePageRef && (
-              <span className="text-[11px] font-bold text-vaayana-textDarkMuted bg-vaayana-softSurface px-2.5 py-0.5 rounded-lg border border-vaayana-softBorder flex items-center gap-1 shadow-sm">
-                <BookOpen className="w-3 h-3 text-vaayana-limeDark" />
+              <span className="text-[11px] font-bold text-[#A59CB5] bg-[#17151B] px-2.5 py-0.5 rounded-lg border border-[#2E263B] flex items-center gap-1 shadow-xs">
+                <BookOpen className="w-3 h-3 text-[#FFD166]" />
                 <span>{slide.sourcePageRef}</span>
               </span>
             )}
           </div>
-          <h2 className={`text-2xl sm:text-4xl font-black text-vaayana-textDark mt-2 tracking-tight ${language === 'ml' ? 'font-malayalam leading-relaxed' : ''}`}>
+          <h2 className={`text-2xl sm:text-4xl font-black text-[#EDE5F7] mt-2 tracking-tight ${language === 'ml' ? 'font-malayalam leading-relaxed' : ''}`}>
             {title}
           </h2>
           {bilingualView && (
-            <h3 className="text-lg font-bold text-vaayana-textDarkMuted mt-1 italic font-malayalam">
+            <h3 className="text-lg font-bold text-[#A59CB5] mt-1 italic font-malayalam">
               {language === 'ml' ? slide.titleEn : slide.titleMl}
             </h3>
           )}
@@ -98,8 +119,8 @@ export const InteractiveSlideView: React.FC<InteractiveSlideViewProps> = ({
           onClick={() => setBilingualView(!bilingualView)}
           className={`self-start sm:self-auto flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold border transition-all ${
             bilingualView
-              ? 'bg-vaayana-dark text-vaayana-lime border-vaayana-dark shadow-sm'
-              : 'bg-vaayana-softSurface text-vaayana-textDark hover:bg-vaayana-softBorder border-vaayana-softBorder'
+              ? 'bg-[#7950B8] text-white border-[#7950B8] shadow-sm'
+              : 'bg-[#17151B] text-[#EDE5F7] hover:bg-[#1D1A24] border-[#2E263B]'
           }`}
           title="Toggle side-by-side English/Malayalam translations"
         >
@@ -110,14 +131,14 @@ export const InteractiveSlideView: React.FC<InteractiveSlideViewProps> = ({
 
       {/* Grounded Evidence Snippet Banner */}
       {slide.evidenceSnippet && (
-        <div className="p-3.5 bg-amber-50/90 rounded-2xl border border-amber-300 text-xs text-amber-950 flex items-start gap-2.5 shadow-sm">
-          <BookOpen className="w-4 h-4 text-amber-800 shrink-0 mt-0.5" />
+        <div className="p-3.5 bg-amber-950/40 rounded-2xl border border-amber-600/40 text-xs text-amber-200 flex items-start gap-2.5 shadow-sm">
+          <BookOpen className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
           <div>
-            <span className="font-extrabold text-amber-950 block text-[11px]">
+            <span className="font-extrabold text-amber-300 block text-[11px]">
               {language === 'ml' ? 'പാഠപുസ്തക തെളിവ് (Textbook Grounding):' : 'Textbook Citation Quote:'}
-              {slide.sourcePageRef && <span className="ml-1 text-[10px] font-normal text-amber-800">({slide.sourcePageRef})</span>}
+              {slide.sourcePageRef && <span className="ml-1 text-[10px] font-normal text-amber-300/80">({slide.sourcePageRef})</span>}
             </span>
-            <p className="italic text-amber-900 mt-0.5 leading-relaxed font-serif">"{slide.evidenceSnippet}"</p>
+            <p className="italic text-amber-200 mt-0.5 leading-relaxed font-serif">"{slide.evidenceSnippet}"</p>
           </div>
         </div>
       )}
@@ -137,32 +158,47 @@ export const InteractiveSlideView: React.FC<InteractiveSlideViewProps> = ({
       )}
 
       {/* 3. Embed Interactive Smartboard Manipulative if slide has one */}
-      {slide.interactiveModule && (
+      {(slide.interactiveModule || slide.activityType) && (
         <div className="py-2 space-y-4">
-          {slide.interactiveModule === 'shape_explorer' && <ShapeExplorer />}
-          {slide.interactiveModule === 'geoboard' && <Geoboard />}
-          {slide.interactiveModule === 'three_d_shapes' && <ThreeDShapeViewer />}
-          {slide.interactiveModule === 'tangram' && <TangramPuzzle />}
-          {slide.interactiveModule === 'number_pattern' && <NumberPatternActivity />}
-          {slide.interactiveModule === 'toto_intro' && <TotoCarIntro />}
-          {slide.interactiveModule === 'vehicle_matching' && <VehicleMatchingGame />}
-          {slide.interactiveModule === 'abacus' && <AbacusSimulator />}
-          {slide.interactiveModule === 'car_race' && <CarRaceActivity />}
-          {slide.interactiveModule === 'number_names' && <NumberNameExplorer />}
-          {slide.interactiveModule === 'number_wheel' && <NumberWheel />}
-          {slide.interactiveModule === 'roman_numerals' && <RomanNumeralExplorer />}
-          {(slide.interactiveModule === 'interactive_clock' || slide.interactiveModule === 'clock') && <InteractiveClock />}
-          {slide.interactiveModule === 'number_pairs' && <NumberPairExplorer />}
-          {slide.interactiveModule === 'dwani_door' && <DwaniDoorChallenge />}
-          {slide.interactiveModule === 'ways_to_add' && <WaysToAddVisualizer />}
-          {slide.interactiveModule === 'girls_race' && <GirlsRaceActivity />}
-          {slide.interactiveModule === 'water_leak' && <WaterLeakSimulation />}
-          {slide.interactiveModule === 'calendar_math' && <CalendarMathematics />}
-          {slide.interactiveModule === 'abacus_subtraction' && <AbacusSubtraction />}
-          {slide.interactiveModule === 'written_subtraction' && <WrittenSubtractionBoard />}
-          {slide.interactiveModule === 'currency_explorer' && <IndianCurrencyExplorer />}
-          {slide.interactiveModule === 'fraction_playground' && <FractionPlayground />}
-          {slide.interactiveModule === 'multiplication_visualizer' && <MultiplicationVisualizer />}
+          {(slide.interactiveModule === 'shape_explorer' || slide.activityType === 'shape_explorer') && <ShapeExplorer />}
+          {(slide.interactiveModule === 'geoboard' || slide.activityType === 'geoboard') && <Geoboard />}
+          {(slide.interactiveModule === 'three_d_shapes' || slide.activityType === 'three_d_shapes') && <ThreeDShapeViewer />}
+          {(slide.interactiveModule === 'tangram' || slide.activityType === 'tangram') && <TangramPuzzle />}
+          {(slide.interactiveModule === 'number_pattern' || slide.activityType === 'number_pattern') && <NumberPatternActivity />}
+          {(slide.interactiveModule === 'toto_intro' || slide.activityType === 'toto_intro') && <TotoCarIntro />}
+          {(slide.interactiveModule === 'vehicle_matching' || slide.activityType === 'vehicle_matching') && <VehicleMatchingGame />}
+          {(slide.interactiveModule === 'abacus' || slide.activityType === 'abacus') && <AbacusSimulator />}
+          {(slide.interactiveModule === 'car_race' || slide.activityType === 'car_race') && <CarRaceActivity />}
+          {(slide.interactiveModule === 'number_names' || slide.activityType === 'number_names') && <NumberNameExplorer />}
+          {(slide.interactiveModule === 'number_wheel' || slide.activityType === 'number_wheel') && <NumberWheel />}
+          {(slide.interactiveModule === 'roman_numerals' || slide.activityType === 'roman_numerals') && <RomanNumeralExplorer />}
+          {(slide.interactiveModule === 'interactive_clock' || slide.interactiveModule === 'clock' || slide.activityType === 'interactive_clock' || slide.activityType === 'clock') && <InteractiveClock />}
+          {(slide.interactiveModule === 'number_pairs' || slide.activityType === 'number_pairs') && <NumberPairExplorer />}
+          {(slide.interactiveModule === 'dwani_door' || slide.activityType === 'dwani_door') && <DwaniDoorChallenge />}
+          {(slide.interactiveModule === 'ways_to_add' || slide.activityType === 'ways_to_add') && <WaysToAddVisualizer />}
+          {(slide.interactiveModule === 'girls_race' || slide.activityType === 'girls_race') && <GirlsRaceActivity />}
+          {(slide.interactiveModule === 'water_leak' || slide.activityType === 'water_leak') && <WaterLeakSimulation />}
+          {(slide.interactiveModule === 'calendar_math' || slide.activityType === 'calendar_math') && <CalendarMathematics />}
+          {(slide.interactiveModule === 'abacus_subtraction' || slide.activityType === 'abacus_subtraction') && <AbacusSubtraction />}
+          {(slide.interactiveModule === 'written_subtraction' || slide.activityType === 'written_subtraction') && <WrittenSubtractionBoard />}
+          {(slide.interactiveModule === 'currency_explorer' || slide.activityType === 'currency_explorer') && <IndianCurrencyExplorer />}
+          {(slide.interactiveModule === 'fraction_playground' || slide.activityType === 'fraction_playground') && <FractionPlayground />}
+          {(slide.interactiveModule === 'multiplication_visualizer' || slide.activityType === 'multiplication_visualizer') && <MultiplicationVisualizer />}
+          {(slide.interactiveModule === 'evs_states_classifier' || slide.activityType === 'evs_states_classifier') && <SolidLiquidGasClassifier />}
+          {(slide.interactiveModule === 'evs_liquid_shape' || slide.activityType === 'evs_liquid_shape') && <LiquidShapeExplorer />}
+          {(slide.interactiveModule === 'evs_thermal_transitions' || slide.activityType === 'evs_thermal_transitions') && <HeatingCoolingSimulator />}
+          {(slide.interactiveModule === 'evs_air_occupies_space' || slide.activityType === 'evs_air_occupies_space') && <AirOccupiesSpaceDemo />}
+          {(slide.interactiveModule === 'evs_solar_system' || slide.activityType === 'evs_solar_system') && <SolarSystemSimulator />}
+          {(slide.interactiveModule === 'evs_rotation_revolution' || slide.activityType === 'evs_rotation_revolution') && <RotationRevolutionSimulator />}
+          {(slide.interactiveModule === 'evs_moon_phases' || slide.activityType === 'evs_moon_phases') && <MoonPhasesSimulator />}
+          {(slide.interactiveModule === 'evs_moon_exploration' || slide.activityType === 'evs_moon_exploration') && <MoonExplorationViewer />}
+          {(slide.interactiveModule === 'evs_direction_compass' || slide.activityType === 'evs_direction_compass') && <DirectionCompassActivity />}
+          {(slide.interactiveModule === 'evs_village_map' || slide.activityType === 'evs_village_map') && <VillageNavigationMap />}
+          {(slide.interactiveModule === 'evs_magnetic_compass' || slide.activityType === 'evs_magnetic_compass') && <MagneticCompassDemo />}
+          {(slide.interactiveModule === 'evs_map_symbols' || slide.activityType === 'evs_map_symbols') && <MapSymbolsExplorer />}
+          {(slide.interactiveModule === 'evs_kerala_geography' || slide.activityType === 'evs_kerala_geography') && <KeralaGeographyExplorer />}
+          {(slide.interactiveModule === 'evs_backwaters_explorer' || slide.activityType === 'evs_backwaters_explorer') && <BackwatersExplorer />}
+          {(slide.interactiveModule === 'educational_video' || slide.activityType === 'educational_video') && <EducationalVideo />}
 
           {/* Accompanying narrative below manipulative */}
           {content && (
@@ -173,7 +209,7 @@ export const InteractiveSlideView: React.FC<InteractiveSlideViewProps> = ({
               {keyPoints.length > 0 && (
                 <div className="pt-2 flex flex-wrap gap-2">
                   {keyPoints.map((point, idx) => (
-                    <span key={idx} className="px-3 py-1.5 rounded-xl bg-vaayana-dark text-vaayana-lime font-bold text-xs shadow-sm">
+                    <span key={idx} className="px-3 py-1.5 rounded-xl bg-[#1D1A24] text-[#EDE5F7] font-bold text-xs shadow-xs border border-[#7950B8]/30">
                       ✓ {point}
                     </span>
                   ))}
@@ -185,29 +221,29 @@ export const InteractiveSlideView: React.FC<InteractiveSlideViewProps> = ({
       )}
 
       {/* 4. Main Narrative Grid: Concept Details + Smartboard Touch Points (When no full manipulative) */}
-      {!slide.emphasisWord && !slide.interactiveModule && (
+      {!slide.emphasisWord && !slide.interactiveModule && !slide.activityType && (
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
           
           {/* Left/Top: Interactive Visual Box */}
-          <div className="lg:col-span-5 bg-vaayana-softSurface p-6 sm:p-7 rounded-3xl border border-vaayana-softBorder flex flex-col justify-between shadow-soft relative overflow-hidden group">
+          <div className="lg:col-span-5 bg-[#17151B] p-6 sm:p-7 rounded-3xl border border-[#2E263B] flex flex-col justify-between shadow-sm relative overflow-hidden group">
             <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
-              <Sparkles className="w-32 h-32 text-vaayana-limeDark" />
+              <Sparkles className="w-32 h-32 text-[#7950B8]" />
             </div>
 
             <div>
               <div className="flex items-center gap-2 mb-3">
-                <span className="p-2 rounded-xl bg-vaayana-dark text-vaayana-lime shadow-sm">
+                <span className="p-2 rounded-xl bg-[#1D1A24] text-[#A881E6] shadow-xs">
                   <Eye className="w-5 h-5" />
                 </span>
-                <span className="font-bold text-xs uppercase tracking-wider text-vaayana-textDarkMuted font-mono">
+                <span className="font-bold text-xs uppercase tracking-wider text-[#A59CB5] font-mono">
                   {language === 'ml' ? 'ദൃശ്യ സഹായി' : 'Smartboard Visual Concept'}
                 </span>
               </div>
 
               <div className="space-y-3">
-                <div className="w-full min-h-[160px] rounded-2xl bg-vaayana-soft border border-vaayana-softBorder p-5 flex flex-col items-center justify-center text-center shadow-inner">
-                  <Lightbulb className="w-12 h-12 text-amber-500 animate-bounce mb-2" />
-                  <p className="text-sm sm:text-base font-bold text-vaayana-textDark font-malayalam leading-relaxed">
+                <div className="w-full min-h-[160px] rounded-2xl bg-[#111114] border border-[#2E263B] p-5 flex flex-col items-center justify-center text-center shadow-inner">
+                  <Lightbulb className="w-12 h-12 text-amber-400 animate-bounce mb-2" />
+                  <p className="text-sm sm:text-base font-bold text-[#EDE5F7] font-malayalam leading-relaxed">
                     {language === 'ml'
                       ? (slide.visualDescriptionMl || slide.visualDescriptionEn || 'ആശയത്തെ വ്യക്തമാക്കുന്ന ദൃശ്യം')
                       : (slide.visualDescriptionEn || slide.visualDescriptionMl || 'Diagram illustrating concept')}
@@ -218,9 +254,9 @@ export const InteractiveSlideView: React.FC<InteractiveSlideViewProps> = ({
 
             {/* Teacher Notes Tip */}
             {slide.teacherNotesMl && (
-              <div className="mt-4 p-3.5 bg-vaayana-dark text-vaayana-textLight rounded-2xl border border-vaayana-darkBorder text-xs">
-                <span className="font-black text-vaayana-lime block mb-0.5">അധ്യാപക സഹായി (Teacher Note):</span>
-                <span className="font-malayalam text-vaayana-textLightMuted">
+              <div className="mt-4 p-3.5 bg-[#111114] text-[#EDE5F7] rounded-2xl border border-[#2E263B] text-xs">
+                <span className="font-black text-[#A881E6] block mb-0.5">അധ്യാപക സഹായി (Teacher Note):</span>
+                <span className="font-malayalam text-[#A59CB5]">
                   {language === 'ml' ? slide.teacherNotesMl : (slide.teacherNotesEn || slide.teacherNotesMl)}
                 </span>
               </div>
@@ -259,18 +295,18 @@ export const InteractiveSlideView: React.FC<InteractiveSlideViewProps> = ({
                         onClick={() => toggleReveal(idx)}
                         className={`p-4 rounded-2xl border transition-all cursor-pointer flex items-start gap-3.5 select-none ${
                           isRevealed
-                            ? 'bg-vaayana-limeLight/40 border-vaayana-limeDark/40 shadow-sm'
-                            : 'bg-vaayana-soft hover:bg-vaayana-softMuted/40 border-vaayana-softBorder'
+                            ? 'bg-[#72D6B0]/10 border-[#72D6B0]/40 shadow-sm'
+                            : 'bg-[#17151B] hover:bg-[#1D1A24] border-[#2E263B]'
                         }`}
                       >
                         <div className={`mt-0.5 w-6 h-6 rounded-full flex items-center justify-center shrink-0 transition-colors ${
-                          isRevealed ? 'bg-vaayana-dark text-vaayana-lime font-black' : 'bg-vaayana-softBorder text-vaayana-textDarkMuted'
+                          isRevealed ? 'bg-[#72D6B0]/20 text-[#72D6B0] font-black border border-[#72D6B0]/40' : 'bg-[#1D1A24] text-[#A59CB5] border border-[#2E263B]'
                         }`}>
-                          {isRevealed ? <CheckCircle2 className="w-4 h-4" /> : <span className="text-xs font-bold">{idx + 1}</span>}
+                          {isRevealed ? <CheckCircle2 className="w-4 h-4 text-[#72D6B0]" /> : <span className="text-xs font-bold">{idx + 1}</span>}
                         </div>
 
                         <div className="flex-1">
-                          <p className={`text-sm sm:text-base text-vaayana-textDark font-bold ${language === 'ml' ? 'font-malayalam' : ''}`}>
+                          <p className={`text-sm sm:text-base text-[#EDE5F7] font-bold ${language === 'ml' ? 'font-malayalam' : ''}`}>
                             {point}
                           </p>
                         </div>

@@ -27,8 +27,8 @@
     color-scheme: dark;
   }
   body {
-    background-color: #111713; /* 60% dominant deep charcoal / near-black */
-    color: #F1F4EE;            /* 30% soft white */
+    background-color: #090909; /* Deep black background */
+    color: #EDE5F7;            /* Main soft lavender/white text */
     -webkit-tap-highlight-color: transparent;
     user-select: text;
     line-height: 1.6;
@@ -78,10 +78,10 @@
 
 @keyframes pulseLimeGlow {
   0%, 100% {
-    box-shadow: 0 0 10px 0 rgba(154, 205, 50, 0.2);
+    box-shadow: 0 0 10px 0 rgba(121, 80, 184, 0.2);
   }
   50% {
-    box-shadow: 0 0 25px 6px rgba(154, 205, 50, 0.45);
+    box-shadow: 0 0 25px 6px rgba(121, 80, 184, 0.4);
   }
 }
 
@@ -214,22 +214,22 @@
   animation: pulseLimeGlow 2.5s infinite ease-in-out;
 }
 
-/* Custom dark scrollbar with lime touch */
+/* Custom dark scrollbar with subtle purple accent */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #111713;
+  background: #090909;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #2A3C2F;
+  background: #2E263B;
   border-radius: 9999px;
-  border: 2px solid #111713;
+  border: 2px solid #090909;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #9ACD32;
+  background: #7950B8;
 }

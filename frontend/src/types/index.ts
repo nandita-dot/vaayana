@@ -137,11 +137,29 @@ export interface ActivityItem {
     | 'calendar_math'
     | 'abacus_subtraction'
     | 'written_subtraction'
-    | 'currency_explorer';
-  learningObjectiveEn: string;
-  learningObjectiveMl: string;
-  instructionEn: string;
-  instructionMl: string;
+    | 'currency_explorer'
+    | 'evs_states_classifier'
+    | 'evs_liquid_shape'
+    | 'evs_thermal_transitions'
+    | 'evs_air_occupies_space'
+    | 'evs_solar_system'
+    | 'evs_rotation_revolution'
+    | 'evs_moon_phases'
+    | 'evs_moon_exploration'
+    | 'educational_video'
+    | 'evs_direction_compass'
+    | 'evs_village_map'
+    | 'evs_magnetic_compass'
+    | 'evs_map_symbols'
+    | 'evs_kerala_geography'
+    | 'evs_backwaters_explorer';
+  learningObjectiveEn?: string;
+  learningObjectiveMl?: string;
+  instructionEn?: string;
+  instructionMl?: string;
+  instructionsEn?: string;
+  instructionsMl?: string;
+  suggestedDurationMinutes?: number;
   items?: any[];
   activityModule?: string;
 }
@@ -182,7 +200,22 @@ export interface ActivityPrompt {
     | 'calendar_math'
     | 'abacus_subtraction'
     | 'written_subtraction'
-    | 'currency_explorer';
+    | 'currency_explorer'
+    | 'evs_states_classifier'
+    | 'evs_liquid_shape'
+    | 'evs_thermal_transitions'
+    | 'evs_air_occupies_space'
+    | 'evs_solar_system'
+    | 'evs_rotation_revolution'
+    | 'evs_moon_phases'
+    | 'evs_moon_exploration'
+    | 'educational_video'
+    | 'evs_direction_compass'
+    | 'evs_village_map'
+    | 'evs_magnetic_compass'
+    | 'evs_map_symbols'
+    | 'evs_kerala_geography'
+    | 'evs_backwaters_explorer';
   items: ActivityItem[];
   activityModule?: string;
 }
@@ -194,11 +227,12 @@ export interface Slide {
   titleMl: string;
   contentEn: string;
   contentMl: string;
-  visualType: 'diagram' | 'illustration' | 'concept_map' | 'experiment' | 'interactive_card' | 'interactive_activity' | 'emphasis_animation';
+  visualType: 'diagram' | 'illustration' | 'concept_map' | 'experiment' | 'interactive_card' | 'interactive_activity' | 'emphasis_animation' | 'interactive' | 'image' | 'text';
   visualDescriptionEn?: string;
   visualDescriptionMl?: string;
-  keyPointsEn: string[];
-  keyPointsMl: string[];
+  imageUrl?: string;
+  keyPointsEn?: string[];
+  keyPointsMl?: string[];
   audioNarrationEn?: string;
   audioNarrationMl?: string;
   teacherNotesEn?: string;
@@ -208,7 +242,9 @@ export interface Slide {
   emphasisWord?: EmphasisWord;
   conceptAnimation?: ConceptAnimationData;
   activity?: ActivityPrompt;
+  activityType?: string;
   interactiveModule?: string;
+  interactivePrompt?: any;
 }
 
 export interface QuizQuestion {

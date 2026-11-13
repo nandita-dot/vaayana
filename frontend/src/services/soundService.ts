@@ -396,3 +396,10 @@ class SoundService {
 }
 
 export const soundService = new SoundService();
+
+export const playClickSound = () => soundService.play('click');
+export const playCorrectSound = () => soundService.play('correct');
+export const playIncorrectSound = () => soundService.play('incorrect');
+export const playCelebrationSound = () => soundService.play('celebration');
+export const playCoinSound = () => soundService.play('coin');
+

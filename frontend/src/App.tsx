@@ -46,7 +46,7 @@ export const App: React.FC = () => {
   return (
     <LanguageProvider>
       <BrowserRouter>
-        <div className="min-h-screen flex flex-col bg-vaayana-dark text-vaayana-textLight font-sans antialiased selection:bg-vaayana-lime selection:text-vaayana-dark">
+        <div className="min-h-screen flex flex-col bg-transparent text-[#EDE5F7] font-sans antialiased selection:bg-[#7950B8] selection:text-white">
           <Navbar />
           
           <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8">

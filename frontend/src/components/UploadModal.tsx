@@ -65,6 +65,9 @@ const KERALA_PRESETS: Array<{ grade: Grade; subject: Subject; chapter: string }>
   { grade: 'Class 4', subject: 'Mathematics', chapter: 'സംഖ്യകൾ വളരുന്നു: 1000 ആകുന്ന ജോടികളും സങ്കലന രീതികളും (Increasing Numbers: Pairs to 1000 & Ways to Add)' },
   { grade: 'Class 4', subject: 'Mathematics', chapter: "സമയം എത്രയായി?: ക്ലോക്കുകളും കലണ്ടർ ഗണിതവും (It's Time! Clocks, Elapsed Time & Calendar)" },
   { grade: 'Class 4', subject: 'Mathematics', chapter: 'സംഖ്യകൾ കുറയുന്നു: അബാക്കസ് കുറയ്ക്കലും ഇന്ത്യൻ കറൻസിയും (Decreasing Numbers: Abacus Subtraction, Borrowing & Currency)' },
+  { grade: 'Class 4', subject: 'Environmental Studies', chapter: 'നമുക്ക് ചുറ്റും പല രൂപങ്ങളിൽ (Around Us in Different Forms)' },
+  { grade: 'Class 4', subject: 'Environmental Studies', chapter: 'ആകാശവിസ്മയങ്ങൾ (Marvels of the Sky)' },
+  { grade: 'Class 4', subject: 'Environmental Studies', chapter: 'ദിശകൾ അറിയാം, നാടറിയാം: വഴിയറിയാം നാടറിയാം (Know the Directions and Know Our Homeland)' },
 ];
 
 export const UploadModal: React.FC<UploadModalProps> = ({
@@ -855,6 +858,7 @@ export const UploadModal: React.FC<UploadModalProps> = ({
                     className="w-full p-3 rounded-xl border border-slate-200 bg-white text-sm font-semibold text-navy-900 focus:ring-2 focus:ring-kerala-blue focus:outline-none"
                   >
                     <option value="Mathematics">Mathematics (ഗണിതം)</option>
+                    <option value="Environmental Studies">Environmental Studies (പരിസരപഠനം)</option>
                   </select>
                 </div>
               </div>

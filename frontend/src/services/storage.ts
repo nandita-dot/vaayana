@@ -138,8 +138,8 @@ export async function getAllLessons(): Promise<Lesson[]> {
     INITIAL_LESSONS.forEach(l => lessonMap.set(l.id, l));
   }
 
-  // Strictly Mathematics lessons
-  return Array.from(lessonMap.values()).filter(l => l.subject === 'Mathematics');
+  // Active Class 4 curriculum subjects (Mathematics & Environmental Studies)
+  return Array.from(lessonMap.values()).filter(l => l.subject === 'Mathematics' || l.subject === 'Environmental Studies');
 }
 
 /**

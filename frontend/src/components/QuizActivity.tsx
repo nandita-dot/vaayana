@@ -102,7 +102,8 @@ export const QuizActivity: React.FC<QuizActivityProps> = ({ questions, onFinish 
         confetti({
           particleCount: 120,
           spread: 100,
-          origin: { y: 0.5 }
+          origin: { y: 0.5 },
+          colors: ['#7950B8', '#FFD166', '#FF8066', '#65C7F7', '#72D6B0', '#F5A6C8', '#FFA552']
         });
       } catch (e) {}
     }
@@ -133,20 +134,20 @@ export const QuizActivity: React.FC<QuizActivityProps> = ({ questions, onFinish 
       <motion.div 
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="bg-vaayana-darkSurface text-vaayana-textLight p-8 sm:p-12 rounded-4xl border border-vaayana-darkBorder shadow-lifted text-center max-w-2xl mx-auto space-y-6 select-none animate-fadeIn"
+        className="bg-[#111114] text-[#EDE5F7] p-8 sm:p-12 rounded-4xl border border-[#2E263B] shadow-2xl text-center max-w-2xl mx-auto space-y-6 select-none animate-fadeIn"
       >
-        <div className="w-24 h-24 bg-vaayana-lime text-vaayana-dark rounded-3xl mx-auto flex items-center justify-center shadow-limeGlow font-black">
-          <Trophy className="w-14 h-14" />
+        <div className="w-24 h-24 bg-[#7950B8] text-white rounded-3xl mx-auto flex items-center justify-center shadow-lg shadow-purple-900/50 font-black">
+          <Trophy className="w-14 h-14 text-[#FFD166]" />
         </div>
 
         <div className="space-y-2">
-          <span className="text-xs uppercase tracking-widest px-3 py-1 rounded-full bg-vaayana-darkElevated text-vaayana-lime font-black border border-vaayana-lime/30">
+          <span className="text-xs uppercase tracking-widest px-3.5 py-1.5 rounded-full bg-[#1D1A24] text-[#A881E6] font-black border border-[#7950B8]/30">
             Classroom Challenge Complete
           </span>
-          <h3 className="text-3xl sm:text-4xl font-black font-malayalam text-vaayana-textLight">
+          <h3 className="text-3xl sm:text-4xl font-black font-malayalam text-[#EDE5F7]">
             {language === 'ml' ? 'അഭിനന്ദനങ്ങൾ കുട്ടികളേ!' : 'Congratulations Class 4!'}
           </h3>
-          <p className="text-vaayana-lime text-lg sm:text-2xl font-bold font-malayalam">
+          <p className="text-[#A881E6] text-lg sm:text-2xl font-black font-malayalam">
             {language === 'ml'
               ? `${questions.length} ചോദ്യങ്ങളിൽ ${score} എണ്ണം ശരിയായി!`
               : `Class scored ${score} out of ${questions.length} (${percentage}%)`}
@@ -159,7 +160,7 @@ export const QuizActivity: React.FC<QuizActivityProps> = ({ questions, onFinish 
             <div 
               key={i} 
               className={`w-9 h-9 rounded-full flex items-center justify-center text-lg ${
-                i < score ? 'bg-vaayana-lime text-vaayana-dark font-black shadow-limeGlow' : 'bg-vaayana-darkElevated text-vaayana-textLightMuted/30 border border-vaayana-darkBorder'
+                i < score ? 'bg-[#FFD166]/20 text-[#FFD166] border border-[#FFD166]/40 font-black shadow-md shadow-amber-900/40' : 'bg-[#1D1A24] text-[#A59CB5]/30 border border-[#2E263B]'
               }`}
             >
               ★
@@ -170,19 +171,19 @@ export const QuizActivity: React.FC<QuizActivityProps> = ({ questions, onFinish 
         <div className="flex flex-col sm:flex-row gap-3 justify-center pt-4">
           <button
             onClick={handleRestart}
-            className="flex items-center justify-center gap-2 px-6 py-4 rounded-2xl bg-vaayana-darkElevated hover:bg-vaayana-darkBorder text-vaayana-textLight font-bold transition-all border border-vaayana-darkBorder active:scale-95"
+            className="flex items-center justify-center gap-2 px-6 py-4 rounded-2xl bg-[#17151B] hover:bg-[#1D1A24] text-[#EDE5F7] font-bold transition-all border border-[#2E263B] active:scale-95"
           >
-            <RotateCcw className="w-5 h-5 text-vaayana-lime" />
+            <RotateCcw className="w-5 h-5 text-[#7950B8]" />
             <span className="font-malayalam">{language === 'ml' ? 'വീണ്ടും കളിക്കാം' : 'Play Again'}</span>
           </button>
 
           {onFinish && (
             <button
               onClick={onFinish}
-              className="flex items-center justify-center gap-2 px-8 py-4 rounded-2xl bg-vaayana-lime hover:bg-vaayana-limeHover text-vaayana-dark font-black transition-all shadow-limeGlow active:scale-95 text-base"
+              className="flex items-center justify-center gap-2 px-8 py-4 rounded-2xl bg-[#563580] hover:bg-[#683FA7] text-white font-black transition-all shadow-lg shadow-purple-950/50 active:scale-95 text-base"
             >
               <span className="font-malayalam">{language === 'ml' ? 'പാഠത്തിലേക്ക് മടങ്ങുക' : 'Return to Lesson'}</span>
-              <ArrowRight className="w-5 h-5 text-vaayana-dark" />
+              <ArrowRight className="w-5 h-5 text-white" />
             </button>
           )}
         </div>
@@ -195,19 +196,19 @@ export const QuizActivity: React.FC<QuizActivityProps> = ({ questions, onFinish 
   const explanation = language === 'ml' ? (currentQ.explanationMl || currentQ.explanationEn) : (currentQ.explanationEn || currentQ.explanationMl);
 
   return (
-    <div className="bg-vaayana-soft p-5 sm:p-8 rounded-4xl border border-vaayana-softBorder shadow-lifted space-y-6 max-w-4xl mx-auto select-none">
+    <div className="bg-[#111114] p-5 sm:p-8 rounded-4xl border border-[#2E263B] shadow-2xl space-y-6 max-w-4xl mx-auto select-none">
       
       {/* Top Game Bar: Progress, Timer & Teacher Controls */}
-      <div className="flex items-center justify-between pb-3 border-b border-vaayana-softMuted">
+      <div className="flex items-center justify-between pb-3 border-b border-[#2E263B]">
         <div className="flex items-center gap-2">
-          <span className="w-8 h-8 rounded-xl bg-vaayana-dark text-vaayana-lime flex items-center justify-center font-bold shadow-sm">
+          <span className="w-8 h-8 rounded-xl bg-[#1D1A24] text-[#A881E6] flex items-center justify-center font-bold shadow-sm">
             <Sparkles className="w-4 h-4" />
           </span>
-          <span className="text-xs font-black uppercase tracking-wider text-vaayana-textDark font-sans">
+          <span className="text-xs font-black uppercase tracking-wider text-[#A881E6] font-sans">
             VAAYANA CLASSROOM CHALLENGE
           </span>
           {currentQ.sourcePageRef && (
-            <span className="hidden sm:inline-block text-[11px] font-bold text-vaayana-textDarkMuted bg-vaayana-softSurface px-2.5 py-0.5 rounded-lg border border-vaayana-softBorder">
+            <span className="hidden sm:inline-block text-[11px] font-bold text-[#A59CB5] bg-[#17151B] px-2.5 py-0.5 rounded-lg border border-[#2E263B]">
               {currentQ.sourcePageRef}
             </span>
           )}
@@ -217,8 +218,8 @@ export const QuizActivity: React.FC<QuizActivityProps> = ({ questions, onFinish 
           {/* Animated Countdown Timer */}
           <div className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full font-mono text-xs sm:text-sm font-black border transition-colors ${
             timeLeft <= 5 
-              ? 'bg-rose-100 text-rose-800 border-rose-300 animate-pulse' 
-              : 'bg-vaayana-dark text-vaayana-lime border-vaayana-darkBorder'
+              ? 'bg-rose-950/80 text-rose-300 border-rose-600 animate-pulse' 
+              : 'bg-[#17151B] text-[#EDE5F7] border-[#2E263B]'
           }`}>
             <Clock className="w-4 h-4" />
             <span>{timeLeft}s</span>
@@ -226,16 +227,16 @@ export const QuizActivity: React.FC<QuizActivityProps> = ({ questions, onFinish 
 
           <button
             onClick={() => setIsTimerPaused(!isTimerPaused)}
-            className="p-2 rounded-xl bg-vaayana-softSurface text-vaayana-textDark hover:bg-vaayana-softMuted border border-vaayana-softBorder transition-all"
+            className="p-2 rounded-xl bg-[#17151B] text-[#EDE5F7] hover:bg-[#1D1A24] border border-[#2E263B] transition-all"
             title={isTimerPaused ? 'Resume Timer' : 'Pause Timer'}
           >
-            {isTimerPaused ? <Play className="w-4 h-4 text-vaayana-limeDark" /> : <Pause className="w-4 h-4" />}
+            {isTimerPaused ? <Play className="w-4 h-4 text-[#A881E6]" /> : <Pause className="w-4 h-4" />}
           </button>
 
           {!isAnswered && (
             <button
               onClick={handleRevealAnswer}
-              className="flex items-center gap-1 px-3 py-1.5 rounded-xl bg-vaayana-softSurface hover:bg-vaayana-softMuted text-vaayana-textDark text-xs font-extrabold border border-vaayana-softBorder shadow-sm"
+              className="flex items-center gap-1 px-3 py-1.5 rounded-xl bg-[#17151B] hover:bg-[#1D1A24] text-[#EDE5F7] text-xs font-extrabold border border-[#2E263B] shadow-sm"
               title="Reveal Answer for Class"
             >
               <Eye className="w-3.5 h-3.5" />
@@ -243,19 +244,19 @@ export const QuizActivity: React.FC<QuizActivityProps> = ({ questions, onFinish 
             </button>
           )}
 
-          <span className="text-xs font-black text-vaayana-dark px-3 py-1 bg-vaayana-lime rounded-full font-mono shadow-sm">
+          <span className="text-xs font-black text-white px-3.5 py-1 bg-[#7950B8] rounded-full font-mono shadow-sm">
             {currentIndex + 1} / {questions.length}
           </span>
         </div>
       </div>
 
       {/* Large Smartboard Question Banner */}
-      <div className="bg-vaayana-dark text-vaayana-textLight p-6 sm:p-10 rounded-3xl text-center shadow-card relative overflow-hidden border border-vaayana-darkBorder">
-        <h3 className={`text-2xl sm:text-3xl md:text-4xl font-black leading-snug font-malayalam`}>
+      <div className="bg-gradient-to-br from-[#1D1A24] to-[#17151B] text-[#EDE5F7] p-6 sm:p-10 rounded-3xl text-center shadow-xl relative overflow-hidden border border-[#3D2D56]">
+        <h3 className={`text-2xl sm:text-3xl md:text-4xl font-black leading-snug font-malayalam text-[#EDE5F7]`}>
           {questionText}
         </h3>
         {language === 'ml' && currentQ.questionEn && currentQ.questionEn !== currentQ.questionMl && (
-          <p className="text-xs sm:text-sm text-vaayana-textLightMuted mt-2 italic">
+          <p className="text-xs sm:text-sm text-[#A59CB5] mt-2 italic">
             {currentQ.questionEn}
           </p>
         )}
@@ -268,18 +269,25 @@ export const QuizActivity: React.FC<QuizActivityProps> = ({ questions, onFinish 
           const isSelected = selectedOption === idx;
           const isCorrectChoice = idx === currentQ.correctIndex;
 
-          let tileClass = 'bg-vaayana-softSurface text-vaayana-textDark border-2 border-vaayana-softBorder hover:border-vaayana-limeDark/60 shadow-soft';
-          let shapeBadgeClass = 'bg-vaayana-dark text-vaayana-lime';
+          const playfulBadgeColors = [
+            'bg-[#FFD166]/15 text-[#FFD166] border border-[#FFD166]/30',
+            'bg-[#65C7F7]/15 text-[#65C7F7] border border-[#65C7F7]/30',
+            'bg-[#72D6B0]/15 text-[#72D6B0] border border-[#72D6B0]/30',
+            'bg-[#F5A6C8]/15 text-[#F5A6C8] border border-[#F5A6C8]/30',
+          ];
+
+          let tileClass = 'bg-[#17151B] text-[#EDE5F7] border-2 border-[#2E263B] hover:border-[#7950B8] shadow-sm hover:shadow-md';
+          let shapeBadgeClass = playfulBadgeColors[idx % playfulBadgeColors.length];
 
           if (isAnswered) {
             if (isCorrectChoice) {
-              tileClass = 'bg-emerald-50 text-emerald-950 border-2 border-emerald-500 ring-4 ring-emerald-300 shadow-lifted scale-[1.02]';
-              shapeBadgeClass = 'bg-emerald-600 text-white';
+              tileClass = 'bg-emerald-950/60 text-emerald-100 border-2 border-emerald-500 ring-4 ring-emerald-500/30 shadow-lifted scale-[1.02]';
+              shapeBadgeClass = 'bg-emerald-600 text-white border-transparent';
             } else if (isSelected) {
-              tileClass = 'bg-rose-50 text-rose-950 border-2 border-rose-500 opacity-90 ring-2 ring-rose-300';
-              shapeBadgeClass = 'bg-rose-600 text-white';
+              tileClass = 'bg-rose-950/60 text-rose-100 border-2 border-rose-500 opacity-90 ring-2 ring-rose-500/30';
+              shapeBadgeClass = 'bg-rose-600 text-white border-transparent';
             } else {
-              tileClass = 'opacity-40 bg-vaayana-softSurface text-slate-400 border-slate-200';
+              tileClass = 'opacity-30 bg-[#111114] text-neutral-500 border-[#2E263B]';
             }
           }
 
@@ -309,8 +317,8 @@ export const QuizActivity: React.FC<QuizActivityProps> = ({ questions, onFinish 
           animate={{ opacity: 1, y: 0 }}
           className={`p-6 rounded-3xl border shadow-card animate-fadeIn ${
             selectedOption === currentQ.correctIndex
-              ? 'bg-emerald-50 border-emerald-300 text-emerald-950'
-              : 'bg-amber-50 border-amber-300 text-amber-950'
+              ? 'bg-emerald-950/60 border-emerald-500/60 text-emerald-100'
+              : 'bg-amber-950/60 border-amber-500/60 text-amber-100'
           }`}
         >
           <div className="flex items-center gap-2 mb-1.5">
@@ -325,19 +333,19 @@ export const QuizActivity: React.FC<QuizActivityProps> = ({ questions, onFinish 
             )}
           </div>
 
-          <p className="text-base sm:text-xl font-bold font-malayalam leading-relaxed mt-2 text-vaayana-textDark">
+          <p className="text-base sm:text-xl font-bold font-malayalam leading-relaxed mt-2 text-[#EDE5F7]">
             {explanation}
           </p>
 
           <div className="mt-5 flex justify-end">
             <button
               onClick={handleNext}
-              className="flex items-center gap-2 px-7 py-3.5 rounded-2xl bg-vaayana-dark hover:bg-black text-vaayana-lime font-black text-sm sm:text-base shadow-card transition-all active:scale-95"
+              className="flex items-center gap-2 px-7 py-3.5 rounded-2xl bg-[#563580] hover:bg-[#683FA7] text-white font-black text-sm sm:text-base shadow-lg shadow-purple-950/50 transition-all active:scale-95"
             >
               <span className="font-malayalam">
                 {currentIndex === questions.length - 1 ? 'ഫലം കാണാം (Finish)' : 'അടുത്ത ചോദ്യം (Next)'}
               </span>
-              <ArrowRight className="w-5 h-5 text-vaayana-lime" />
+              <ArrowRight className="w-5 h-5 text-white" />
             </button>
           </div>
         </motion.div>

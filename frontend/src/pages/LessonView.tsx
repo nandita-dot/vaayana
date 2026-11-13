@@ -42,6 +42,21 @@ import { CalendarMathematics } from '../components/activities/CalendarMathematic
 import { AbacusSubtraction } from '../components/activities/AbacusSubtraction';
 import { WrittenSubtractionBoard } from '../components/activities/WrittenSubtractionBoard';
 import { IndianCurrencyExplorer } from '../components/activities/IndianCurrencyExplorer';
+import { SolidLiquidGasClassifier } from '../components/activities/SolidLiquidGasClassifier';
+import { LiquidShapeExplorer } from '../components/activities/LiquidShapeExplorer';
+import { HeatingCoolingSimulator } from '../components/activities/HeatingCoolingSimulator';
+import { AirOccupiesSpaceDemo } from '../components/activities/AirOccupiesSpaceDemo';
+import { SolarSystemSimulator } from '../components/activities/SolarSystemSimulator';
+import { RotationRevolutionSimulator } from '../components/activities/RotationRevolutionSimulator';
+import { MoonPhasesSimulator } from '../components/activities/MoonPhasesSimulator';
+import { MoonExplorationViewer } from '../components/activities/MoonExplorationViewer';
+import { DirectionCompassActivity } from '../components/activities/DirectionCompassActivity';
+import { VillageNavigationMap } from '../components/activities/VillageNavigationMap';
+import { MagneticCompassDemo } from '../components/activities/MagneticCompassDemo';
+import { MapSymbolsExplorer } from '../components/activities/MapSymbolsExplorer';
+import { KeralaGeographyExplorer } from '../components/activities/KeralaGeographyExplorer';
+import { BackwatersExplorer } from '../components/activities/BackwatersExplorer';
+import { EducationalVideo } from '../components/EducationalVideo';
 import { ChapterTransition } from '../components/animations/ChapterTransition';
 import { SoundControl } from '../components/SoundControl';
 
@@ -122,6 +137,26 @@ export const LessonView: React.FC = () => {
       id: 'scert-std4-maths-ch6-decreasing-numbers',
       titleEn: 'Chapter 6 — Decreasing Numbers',
       titleMl: 'അധ്യായം 6 — സംഖ്യകൾ കുറയുന്നു'
+    },
+    'scert-std4-maths-ch6-decreasing-numbers': {
+      id: 'scert-std4-maths-ch1-lines-and-shapes',
+      titleEn: 'Chapter 1 — Lines and Shapes',
+      titleMl: 'അധ്യായം 1 — വരകളും രൂപങ്ങളും'
+    },
+    'scert-std4-evs-around-us-different-forms': {
+      id: 'scert-std4-evs-marvels-of-the-sky',
+      titleEn: 'Chapter 2 — Marvels of the Sky',
+      titleMl: 'അധ്യായം 2 — ആകാശവിസ്മയങ്ങൾ'
+    },
+    'scert-std4-evs-marvels-of-the-sky': {
+      id: 'scert-std4-evs-directions-homeland',
+      titleEn: 'Chapter 3 — Know the Directions and Know Our Homeland',
+      titleMl: 'അധ്യായം 3 — ദിശകൾ അറിയാം, നാടറിയാം'
+    },
+    'scert-std4-evs-directions-homeland': {
+      id: 'scert-std4-evs-around-us-different-forms',
+      titleEn: 'Chapter 1 — Around Us in Different Forms',
+      titleMl: 'അധ്യായം 1 — നമുക്ക് ചുറ്റും പല രൂപങ്ങളിൽ'
     }
   };
 
@@ -269,28 +304,32 @@ export const LessonView: React.FC = () => {
     <div className="space-y-4 py-2 sm:py-4 max-w-7xl mx-auto relative select-none">
       
       {/* Top Smartboard Control Bar (Landscape-Friendly) */}
-      <div className="bg-vaayana-darkSurface p-3 sm:p-4 rounded-3xl border border-vaayana-darkBorder shadow-darkCard flex flex-wrap items-center justify-between gap-3">
+      <div className="bg-[#111114] p-3 sm:p-4 rounded-3xl border border-[#2E263B] shadow-sm flex flex-wrap items-center justify-between gap-3">
         
         {/* Left: Exit Classroom Button & Title */}
         <div className="flex items-center gap-3">
           <button
             onClick={() => navigate('/classroom')}
-            className="flex items-center gap-1.5 px-3.5 py-2 rounded-2xl bg-vaayana-darkElevated hover:bg-vaayana-darkBorder text-vaayana-textLight font-bold text-xs sm:text-sm border border-vaayana-darkBorder transition-all shadow-sm active:scale-95"
+            className="flex items-center gap-1.5 px-3.5 py-2 rounded-2xl bg-[#17151B] hover:bg-[#1D1A24] text-[#EDE5F7] font-bold text-xs sm:text-sm border border-[#2E263B] transition-all shadow-xs active:scale-95"
             title="Exit Classroom Mode"
           >
-            <LogOut className="w-4 h-4 text-vaayana-lime" />
+            <LogOut className="w-4 h-4 text-[#7950B8]" />
             <span className="hidden sm:inline">
               {language === 'ml' ? 'ക്ലാസ്സ് പൂർത്തിയാക്കുക' : 'Exit Classroom'}
             </span>
           </button>
 
           <div>
-            <div className="flex items-center gap-2 text-xs font-bold text-vaayana-textLightMuted">
-              <span className="px-2 py-0.5 rounded-md bg-vaayana-dark text-vaayana-lime font-black">{lesson.grade || 'Class 4'}</span>
+            <div className="flex items-center gap-2 text-xs font-bold text-[#A59CB5]">
+              <span className="px-2 py-0.5 rounded-md bg-[#1D1A24] text-[#A881E6] font-black">{lesson.grade || 'Class 4'}</span>
               <span>•</span>
-              <span className="truncate max-w-[150px] sm:max-w-none">{lesson.subject}</span>
+              <span className={`px-2 py-0.5 rounded-full text-[11px] font-black border ${
+                lesson.subject.toLowerCase().includes('math')
+                  ? 'bg-[#FFD166]/15 text-[#FFD166] border-[#FFD166]/40'
+                  : 'bg-[#72D6B0]/15 text-[#72D6B0] border-[#72D6B0]/40'
+              }`}>{lesson.subject}</span>
             </div>
-            <h1 className={`text-base sm:text-xl font-black text-vaayana-textLight truncate max-w-[240px] sm:max-w-md ${language === 'ml' ? 'font-malayalam' : ''}`}>
+            <h1 className={`text-base sm:text-xl font-black text-[#EDE5F7] truncate max-w-[240px] sm:max-w-md ${language === 'ml' ? 'font-malayalam' : ''}`}>
               {lessonTitle}
             </h1>
           </div>
@@ -313,33 +352,33 @@ export const LessonView: React.FC = () => {
       </div>
 
       {/* Mode Switcher Tabs + Progress Visualizer */}
-      <div className="bg-vaayana-darkSurface p-3 rounded-2xl border border-vaayana-darkBorder shadow-darkCard flex flex-wrap items-center justify-between gap-3">
+      <div className="bg-[#111114] p-3 rounded-2xl border border-[#2E263B] shadow-sm flex flex-wrap items-center justify-between gap-3">
         <div className="flex flex-wrap items-center gap-2">
           <button
             onClick={() => setViewMode('slides')}
             className={`flex items-center gap-2 px-4 py-2.5 rounded-xl font-black text-xs sm:text-sm transition-all active:scale-95 ${
               viewMode === 'slides'
-                ? 'bg-vaayana-lime text-vaayana-dark shadow-limeGlow'
-                : 'bg-vaayana-darkElevated text-vaayana-textLightMuted hover:text-vaayana-textLight border border-vaayana-darkBorder'
+                ? 'bg-[#7950B8] text-white shadow-md shadow-purple-900/40'
+                : 'bg-[#17151B] text-[#A59CB5] hover:text-[#EDE5F7] border border-[#2E263B]'
             }`}
           >
-            <Tv className={`w-4 h-4 ${viewMode === 'slides' ? 'text-vaayana-dark' : 'text-vaayana-lime'}`} />
+            <Tv className={`w-4 h-4 ${viewMode === 'slides' ? 'text-white' : 'text-[#7950B8]'}`} />
             <span>{language === 'ml' ? 'ദൃശ്യപാഠം' : 'Interactive Slides'}</span>
-            <span className={`text-[11px] px-2 py-0.5 rounded-full font-mono ${viewMode === 'slides' ? 'bg-vaayana-dark/20 text-vaayana-dark font-black' : 'bg-vaayana-dark text-vaayana-lime'}`}>
+            <span className={`text-[11px] px-2 py-0.5 rounded-full font-mono ${viewMode === 'slides' ? 'bg-white/20 text-white font-black' : 'bg-[#1D1A24] text-[#A881E6]'}`}>
               {currentSlideIndex + 1}/{lesson.slides.length}
             </span>
           </button>
 
-          {(activeInteractiveModule || lesson.subject === 'Mathematics') && (
+          {(activeInteractiveModule || lesson.subject === 'Mathematics' || lesson.subject === 'Environmental Studies' || (lesson.activities && lesson.activities.length > 0)) && (
             <button
               onClick={() => setViewMode('activity')}
               className={`flex items-center gap-2 px-4 py-2.5 rounded-xl font-black text-xs sm:text-sm transition-all active:scale-95 ${
                 viewMode === 'activity'
-                  ? 'bg-vaayana-lime text-vaayana-dark shadow-limeGlow'
-                  : 'bg-vaayana-darkElevated text-vaayana-textLightMuted hover:text-vaayana-textLight border border-vaayana-darkBorder'
+                  ? 'bg-[#7950B8] text-white shadow-md shadow-purple-900/40'
+                  : 'bg-[#17151B] text-[#A59CB5] hover:text-[#EDE5F7] border border-[#2E263B]'
               }`}
             >
-              <Gamepad2 className={`w-4 h-4 ${viewMode === 'activity' ? 'text-vaayana-dark' : 'text-vaayana-lime'}`} />
+              <Gamepad2 className={`w-4 h-4 ${viewMode === 'activity' ? 'text-white' : 'text-[#72D6B0]'}`} />
               <span>{language === 'ml' ? 'സ്മാർട്ട്ബോർഡ് കളിസ്ഥലം' : 'Smartboard Manipulative'}</span>
             </button>
           )}
@@ -348,13 +387,13 @@ export const LessonView: React.FC = () => {
             onClick={() => setViewMode('quiz')}
             className={`flex items-center gap-2 px-4 py-2.5 rounded-xl font-black text-xs sm:text-sm transition-all active:scale-95 ${
               viewMode === 'quiz'
-                ? 'bg-vaayana-lime text-vaayana-dark shadow-limeGlow'
-                : 'bg-vaayana-darkElevated text-vaayana-textLightMuted hover:text-vaayana-textLight border border-vaayana-darkBorder'
+                ? 'bg-[#7950B8] text-white shadow-md shadow-purple-900/40'
+                : 'bg-[#17151B] text-[#A59CB5] hover:text-[#EDE5F7] border border-[#2E263B]'
             }`}
           >
-            <Sparkles className={`w-4 h-4 ${viewMode === 'quiz' ? 'text-vaayana-dark' : 'text-vaayana-lime'}`} />
+            <Sparkles className={`w-4 h-4 ${viewMode === 'quiz' ? 'text-white' : 'text-[#FFD166]'}`} />
             <span>{language === 'ml' ? 'ക്ലാസ്സ് ക്വിസ്' : 'Smartboard Quiz'}</span>
-            <span className={`text-[11px] px-2 py-0.5 rounded-full font-mono ${viewMode === 'quiz' ? 'bg-vaayana-dark/20 text-vaayana-dark font-black' : 'bg-vaayana-dark text-vaayana-lime'}`}>
+            <span className={`text-[11px] px-2 py-0.5 rounded-full font-mono ${viewMode === 'quiz' ? 'bg-white/20 text-white font-black' : 'bg-[#FFD166]/15 text-[#FFD166] border border-[#FFD166]/30 font-black'}`}>
               {lesson.quiz.length}
             </span>
           </button>
@@ -362,10 +401,10 @@ export const LessonView: React.FC = () => {
           {/* Dev / Teacher Preview Chapter Completion Airplane Button */}
           <button
             onClick={() => setIsChapterCompleteOpen(true)}
-            className="flex items-center gap-2 px-3.5 py-2.5 rounded-xl font-black text-xs sm:text-sm bg-amber-400 hover:bg-amber-300 text-amber-950 transition-all active:scale-95 shadow-sm"
+            className="flex items-center gap-2 px-3.5 py-2.5 rounded-xl font-black text-xs sm:text-sm bg-[#1D1A24] hover:bg-[#2A2038] text-[#EDE5F7] border border-[#7950B8]/40 transition-all active:scale-95 shadow-xs"
             title="Preview Chapter Completion Celebration & Airplane Animation"
           >
-            <Plane className="w-4 h-4 fill-amber-950 text-amber-950" />
+            <Plane className="w-4 h-4 text-[#FFD166]" />
             <span>{language === 'ml' ? 'വിമാനം കാണുക (Preview)' : 'Preview Chapter Completion'}</span>
           </button>
         </div>
@@ -374,22 +413,22 @@ export const LessonView: React.FC = () => {
         {isDrawing && (
           <button
             onClick={clearCanvas}
-            className="text-xs font-bold text-rose-300 hover:text-rose-100 bg-rose-950/80 px-3 py-1.5 rounded-xl border border-rose-800 transition-all"
+            className="text-xs font-bold text-rose-300 hover:text-rose-100 bg-rose-950/60 px-3 py-1.5 rounded-xl border border-rose-800 transition-all"
           >
             Clear Highlighter
           </button>
         )}
 
-        {/* Lesson Progress Indicator */}
-        <div className="hidden md:flex items-center gap-2 text-xs font-bold text-vaayana-textLightMuted">
+        {/* Lesson Progress Indicator with Playful Gradient */}
+        <div className="hidden md:flex items-center gap-2 text-xs font-bold text-[#A59CB5]">
           <span>Progress:</span>
-          <div className="w-28 h-2 bg-vaayana-darkBorder rounded-full overflow-hidden">
+          <div className="w-28 h-2 bg-[#1D1A24] rounded-full overflow-hidden border border-[#2E263B]">
             <div 
-              className="h-full bg-vaayana-lime transition-all duration-300 rounded-full"
+              className="h-full bg-gradient-to-r from-[#7950B8] via-[#65C7F7] to-[#72D6B0] transition-all duration-300 rounded-full"
               style={{ width: `${progressPercentage}%` }}
             />
           </div>
-          <span className="font-mono text-vaayana-lime">{progressPercentage}%</span>
+          <span className="font-mono text-[#FFD166] font-bold">{progressPercentage}%</span>
         </div>
       </div>
 
@@ -420,9 +459,9 @@ export const LessonView: React.FC = () => {
               className="bg-vaayana-soft rounded-4xl p-6 sm:p-8 border border-vaayana-softBorder shadow-lifted space-y-6"
             >
               {/* Mathematics Smartboard Manipulatives Tab Bar */}
-              <div className="flex flex-wrap items-center justify-between gap-3 p-3 bg-vaayana-dark rounded-2xl border border-vaayana-darkBorder">
+              <div className="flex flex-wrap items-center justify-between gap-3 p-3 bg-[#F6F2FA] rounded-2xl border border-[#EDE5F7]">
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className="text-xs font-bold text-vaayana-textLightMuted px-2">
+                  <span className="text-xs font-bold text-[#746C80] px-2">
                     {language === 'ml' ? 'കളിക്കളങ്ങൾ:' : 'Manipulatives:'}
                   </span>
 
@@ -431,8 +470,8 @@ export const LessonView: React.FC = () => {
                     onClick={() => setSelectedActivityOverride('abacus')}
                     className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-black transition-all active:scale-95 ${
                       displayedActivity === 'abacus'
-                        ? 'bg-vaayana-lime text-vaayana-dark shadow-limeGlow'
-                        : 'bg-vaayana-darkElevated text-vaayana-textLight hover:bg-vaayana-darkBorder border border-vaayana-darkBorder'
+                        ? 'bg-[#7950B8] text-white shadow-sm'
+                        : 'bg-white text-[#563580] hover:bg-[#EDE5F7] border border-[#EDE5F7]'
                     }`}
                   >
                     <Calculator className="w-4 h-4" />
@@ -444,8 +483,8 @@ export const LessonView: React.FC = () => {
                     onClick={() => setSelectedActivityOverride('interactive_clock')}
                     className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-black transition-all active:scale-95 ${
                       displayedActivity === 'interactive_clock' || displayedActivity === 'clock'
-                        ? 'bg-vaayana-lime text-vaayana-dark shadow-limeGlow'
-                        : 'bg-vaayana-darkElevated text-vaayana-textLight hover:bg-vaayana-darkBorder border border-vaayana-darkBorder'
+                        ? 'bg-[#7950B8] text-white shadow-sm'
+                        : 'bg-white text-[#563580] hover:bg-[#EDE5F7] border border-[#EDE5F7]'
                     }`}
                   >
                     <Clock className="w-4 h-4" />
@@ -456,7 +495,7 @@ export const LessonView: React.FC = () => {
                   {selectedActivityOverride && (
                     <button
                       onClick={() => setSelectedActivityOverride(null)}
-                      className="px-3 py-2 rounded-xl text-xs font-bold text-vaayana-textLightMuted hover:text-white bg-vaayana-darkSurface border border-vaayana-darkBorder"
+                      className="px-3 py-2 rounded-xl text-xs font-bold text-[#563580] hover:text-[#292333] bg-white border border-[#EDE5F7]"
                     >
                       {language === 'ml' ? 'പാഠത്തിലെ കളിക്കളം' : 'Slide Default'}
                     </button>
@@ -466,9 +505,9 @@ export const LessonView: React.FC = () => {
                 {/* Preview Chapter Completion Button */}
                 <button
                   onClick={() => setIsChapterCompleteOpen(true)}
-                  className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-black bg-amber-400 hover:bg-amber-300 text-amber-950 transition-all active:scale-95 shadow-sm"
+                  className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-black bg-[#EDE5F7] hover:bg-[#E5DCF2] text-[#563580] border border-[#7950B8]/30 transition-all active:scale-95 shadow-xs"
                 >
-                  <Plane className="w-4 h-4 fill-amber-950 text-amber-950" />
+                  <Plane className="w-4 h-4 text-[#7950B8]" />
                   <span>{language === 'ml' ? 'വിമാനം കാണുക (Preview)' : 'Preview Chapter Completion'}</span>
                 </button>
               </div>
@@ -498,6 +537,21 @@ export const LessonView: React.FC = () => {
               {displayedActivity === 'currency_explorer' && <IndianCurrencyExplorer />}
               {displayedActivity === 'fraction_playground' && <FractionPlayground />}
               {displayedActivity === 'multiplication_visualizer' && <MultiplicationVisualizer />}
+              {displayedActivity === 'evs_states_classifier' && <SolidLiquidGasClassifier />}
+              {displayedActivity === 'evs_liquid_shape' && <LiquidShapeExplorer />}
+              {displayedActivity === 'evs_thermal_transitions' && <HeatingCoolingSimulator />}
+              {displayedActivity === 'evs_air_occupies_space' && <AirOccupiesSpaceDemo />}
+              {displayedActivity === 'evs_solar_system' && <SolarSystemSimulator />}
+              {displayedActivity === 'evs_rotation_revolution' && <RotationRevolutionSimulator />}
+              {displayedActivity === 'evs_moon_phases' && <MoonPhasesSimulator />}
+              {displayedActivity === 'evs_moon_exploration' && <MoonExplorationViewer />}
+              {displayedActivity === 'evs_direction_compass' && <DirectionCompassActivity />}
+              {displayedActivity === 'evs_village_map' && <VillageNavigationMap />}
+              {displayedActivity === 'evs_magnetic_compass' && <MagneticCompassDemo />}
+              {displayedActivity === 'evs_map_symbols' && <MapSymbolsExplorer />}
+              {displayedActivity === 'evs_kerala_geography' && <KeralaGeographyExplorer />}
+              {displayedActivity === 'evs_backwaters_explorer' && <BackwatersExplorer />}
+              {displayedActivity === 'educational_video' && <EducationalVideo />}
             </motion.div>
           ) : viewMode === 'slides' && currentSlide ? (
             <motion.div
@@ -551,13 +605,13 @@ export const LessonView: React.FC = () => {
 
       {/* Bottom Smartboard Touch Navigation */}
       {viewMode === 'slides' && (
-        <div className="bg-vaayana-darkSurface p-4 sm:p-5 rounded-3xl border border-vaayana-darkBorder shadow-darkCard flex items-center justify-between gap-4">
+        <div className="bg-[#111114] p-4 sm:p-5 rounded-3xl border border-[#2E263B] shadow-sm flex items-center justify-between gap-4">
           <button
             onClick={() => setCurrentSlideIndex(i => Math.max(0, i - 1))}
             disabled={currentSlideIndex === 0}
-            className="flex items-center gap-3 px-6 sm:px-8 py-3.5 sm:py-4 rounded-2xl bg-vaayana-darkElevated hover:bg-vaayana-darkBorder disabled:opacity-30 text-vaayana-textLight font-extrabold text-base sm:text-lg transition-all active:scale-95 min-h-[56px] border border-vaayana-darkBorder shadow-sm"
+            className="flex items-center gap-3 px-6 sm:px-8 py-3.5 sm:py-4 rounded-2xl bg-[#17151B] hover:bg-[#1D1A24] disabled:opacity-30 text-[#EDE5F7] font-extrabold text-base sm:text-lg transition-all active:scale-95 min-h-[56px] border border-[#2E263B] shadow-xs"
           >
-            <ChevronLeft className="w-6 h-6 text-vaayana-lime" />
+            <ChevronLeft className="w-6 h-6 text-[#7950B8]" />
             <span>{t('previous')}</span>
           </button>
 
@@ -569,8 +623,8 @@ export const LessonView: React.FC = () => {
                 onClick={() => setCurrentSlideIndex(idx)}
                 className={`transition-all ${
                   idx === currentSlideIndex 
-                    ? 'w-10 h-4 bg-vaayana-lime rounded-full shadow-limeGlow' 
-                    : 'w-4 h-4 bg-vaayana-darkBorder hover:bg-vaayana-darkMuted rounded-full'
+                    ? 'w-10 h-4 bg-[#7950B8] rounded-full shadow-md shadow-purple-900/40' 
+                    : 'w-4 h-4 bg-[#1D1A24] hover:bg-[#2A2038] border border-[#2E263B] rounded-full'
                 }`}
                 title={`Go to slide ${idx + 1}`}
               />
@@ -580,18 +634,18 @@ export const LessonView: React.FC = () => {
           {currentSlideIndex < lesson.slides.length - 1 ? (
             <button
               onClick={() => setCurrentSlideIndex(i => Math.min(lesson.slides.length - 1, i + 1))}
-              className="flex items-center gap-3 px-8 sm:px-10 py-3.5 sm:py-4 rounded-2xl bg-vaayana-lime hover:bg-vaayana-limeHover text-vaayana-dark font-black text-base sm:text-lg shadow-limeGlow transition-all active:scale-95 min-h-[56px]"
+              className="flex items-center gap-3 px-8 sm:px-10 py-3.5 sm:py-4 rounded-2xl bg-[#563580] hover:bg-[#683FA7] text-white font-black text-base sm:text-lg shadow-md shadow-purple-950/40 transition-all active:scale-95 min-h-[56px]"
             >
               <span>{t('next')}</span>
-              <ChevronRight className="w-6 h-6 text-vaayana-dark" />
+              <ChevronRight className="w-6 h-6 text-white" />
             </button>
           ) : (
             <button
               onClick={() => setViewMode('quiz')}
-              className="flex items-center gap-3 px-8 sm:px-10 py-3.5 sm:py-4 rounded-2xl bg-vaayana-lime hover:bg-vaayana-limeHover text-vaayana-dark font-black text-base sm:text-lg shadow-limeGlow transition-all active:scale-95 min-h-[56px]"
+              className="flex items-center gap-3 px-8 sm:px-10 py-3.5 sm:py-4 rounded-2xl bg-[#563580] hover:bg-[#683FA7] text-white font-black text-base sm:text-lg shadow-md shadow-purple-950/40 transition-all active:scale-95 min-h-[56px]"
             >
               <span>{t('takeQuiz')}</span>
-              <Sparkles className="w-6 h-6 text-vaayana-dark" />
+              <Sparkles className="w-6 h-6 text-white" />
             </button>
           )}
         </div>

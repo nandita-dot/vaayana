@@ -38,14 +38,14 @@ export const SoundControl: React.FC<SoundControlProps> = ({ className = '', show
   };
 
   return (
-    <div className={`relative inline-flex items-center gap-2 bg-white/90 backdrop-blur-md border border-slate-200/80 rounded-2xl px-3 py-1.5 shadow-sm transition-all ${className}`}>
+    <div className={`relative inline-flex items-center gap-2 bg-[#17151B] backdrop-blur-md border border-[#2E263B] rounded-2xl px-3 py-1.5 shadow-xs transition-all ${className}`}>
       <button
         onClick={handleToggle}
         onMouseEnter={() => showSlider && setIsExpanded(true)}
         className={`p-2 rounded-xl transition-transform active:scale-95 flex items-center justify-center ${
           isMuted
-            ? 'bg-rose-50 text-rose-600 hover:bg-rose-100'
-            : 'bg-vaayana-limeLight text-vaayana-limeDark hover:bg-lime-200'
+            ? 'bg-rose-950/60 text-rose-400 border border-rose-500/30 hover:bg-rose-900/60'
+            : 'bg-[#1D1A24] text-[#A881E6] border border-[#7950B8]/30 hover:bg-[#2A2038]'
         }`}
         title={isMuted ? 'ശബ്ദം ഓണാക്കുക (Unmute)' : 'ശബ്ദം ഓഫാക്കുക (Mute)'}
         aria-label="Sound Toggle"
@@ -68,10 +68,10 @@ export const SoundControl: React.FC<SoundControlProps> = ({ className = '', show
             step="0.05"
             value={isMuted ? 0 : volume}
             onChange={handleVolumeChange}
-            className="w-16 sm:w-20 h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-vaayana-limeDark"
+            className="w-16 sm:w-20 h-1.5 bg-[#1D1A24] rounded-lg appearance-none cursor-pointer accent-[#7950B8]"
             title={`വോളിയം (Volume): ${Math.round((isMuted ? 0 : volume) * 100)}%`}
           />
-          <span className="text-[10px] font-black text-slate-500 w-6 text-right tabular-nums">
+          <span className="text-[10px] font-black text-[#A59CB5] w-6 text-right tabular-nums">
             {isMuted ? '0%' : `${Math.round(volume * 100)}%`}
           </span>
         </div>
