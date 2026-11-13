@@ -1,0 +1,53 @@
+================================================================================
+VAAYANA (വായന) — FINAL PRE-GEMINI ACCEPTANCE AUDIT
+================================================================================
+[PASS] Stage 0: Gemini Cost Protection Check - Live call tracker initialized to 0
+[PASS] Stage 1: Locate Actual Textbook PDF - Found '04_English Reader.pdf' (45.53 MB, SHA-256: 6ef1c656d68a...)
+[PASS] Stage 2: Local OCR Environment Inspection - Tesseract=False, Version=None, Malayalam=False, English=False
+  - Total Pages: 64
+  - Pages with Digital Text: 61
+  - Pages Processed with OCR: 0
+  - Pages Image-Only / Diagram: 3
+  - Pages Unprocessable / Blank: 0
+  - Total Words Extracted: 4991
+  - Total Embedded Images: 234
+  - Malayalam Chars Detected: 0
+[PASS] Stage 3: 64-Page Accounting Invariant - All 64 pages accounted for: 61 digital + 0 OCR + 3 image-only + 0 unprocessable = 64
+
+[Image-Only Pages Analysis] Detected 3 pages: [6, 63, 64]
+  - Page 6: 1 image(s), 0 words, rect=510x751
+      Image 1: 1562x2229 jpeg (4)
+  - Page 63: 1 image(s), 0 words, rect=510x751
+      Image 1: 1512x2246 png (1)
+  - Page 64: 1 image(s), 0 words, rect=510x751
+      Image 1: 2098x2766 png (1)
+[PASS] Stage 4: Image-Heavy Pages Inspection - Exactly 3 image-only pages identified: [6, 63, 64]. Contains full-page illustrations/diagrams with no selectable text.
+[PASS] Stage 5: Malayalam Normalization & Text Cleanliness - NFC Unicode normalization, zero-width space removal, and whitespace collapsing verified
+
+[Detected Chapters] Found 2 chapters:
+  - Unit/Chapter 1: 'PART 2: ENGLISH' (Pages 1-36, ~2875 words)
+  - Unit/Chapter 2: 'UNIT: The Melody of Rain' (Pages 37-64, ~2116 words)
+[PASS] Stage 6: Chapter Detection - Detected 2 distinct chapters/units with valid page boundaries
+[PASS] Stage 7: Chapter Page Isolation - Isolated Chapter 'UNIT: The Melody of Rain' (Pages 37-64): exactly 28/28 page blocks isolated without text leakage
+[PASS] Stage 8: Deterministic Mock Concept Generation - Generated 2 concepts, 4 slides with 0 live Gemini calls
+[PASS] Stage 9: SQLite Save, Reopen & Version Isolation - Classroom mode retrieves approved v2; Workspace retrieves draft v3; concepts & citations intact
+[PASS] Stage 10: Zero Live Gemini API Calls Enforced - Total live Gemini API calls across entire audit run = 0
+
+================================================================================
+>>> ACCEPTANCE AUDIT PASSED: ALL 10 STAGES COMPLETED SUCCESSFULLY <<<
+================================================================================
+
+================================================================================
+STAGE SUMMARY:
+  [PASS] Stage 0: Gemini Cost Protection Check: Live call tracker initialized to 0
+  [PASS] Stage 1: Locate Actual Textbook PDF: Found '04_English Reader.pdf' (45.53 MB, SHA-256: 6ef1c656d68a...)
+  [PASS] Stage 2: Local OCR Environment Inspection: Tesseract=False, Version=None, Malayalam=False, English=False
+  [PASS] Stage 3: 64-Page Accounting Invariant: All 64 pages accounted for: 61 digital + 0 OCR + 3 image-only + 0 unprocessable = 64
+  [PASS] Stage 4: Image-Heavy Pages Inspection: Exactly 3 image-only pages identified: [6, 63, 64]. Contains full-page illustrations/diagrams with no selectable text.
+  [PASS] Stage 5: Malayalam Normalization & Text Cleanliness: NFC Unicode normalization, zero-width space removal, and whitespace collapsing verified
+  [PASS] Stage 6: Chapter Detection: Detected 2 distinct chapters/units with valid page boundaries
+  [PASS] Stage 7: Chapter Page Isolation: Isolated Chapter 'UNIT: The Melody of Rain' (Pages 37-64): exactly 28/28 page blocks isolated without text leakage
+  [PASS] Stage 8: Deterministic Mock Concept Generation: Generated 2 concepts, 4 slides with 0 live Gemini calls
+  [PASS] Stage 9: SQLite Save, Reopen & Version Isolation: Classroom mode retrieves approved v2; Workspace retrieves draft v3; concepts & citations intact
+  [PASS] Stage 10: Zero Live Gemini API Calls Enforced: Total live Gemini API calls across entire audit run = 0
+================================================================================

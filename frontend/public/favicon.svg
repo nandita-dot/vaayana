@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <!-- VAAYANA Signature Lime Background Container -->
+  <rect width="100" height="100" rx="24" fill="#9ACD32"/>
+  
+  <!-- Stylized Open Book Symbol in Forest Charcoal (#111713) -->
+  <g fill="#111713">
+    <!-- Left Open Page -->
+    <path d="M20 30C20 30 32 26 50 32V76C32 70 20 74 20 74V30Z"/>
+    <!-- Right Open Page -->
+    <path d="M80 30C80 30 68 26 50 32V76C68 70 80 74 80 74V30Z"/>
+  </g>
+
+  <!-- Book Spine Center Separation -->
+  <line x1="50" y1="31" x2="50" y2="76" stroke="#9ACD32" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- Page Contrast Lines in Lime Green -->
+  <path d="M28 40C35 38 42 39 46 41" stroke="#9ACD32" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M72 40C65 38 58 39 54 41" stroke="#9ACD32" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M28 50C35 48 42 49 46 51" stroke="#9ACD32" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M72 50C65 48 58 49 54 51" stroke="#9ACD32" stroke-width="2.5" stroke-linecap="round"/>
+</svg>

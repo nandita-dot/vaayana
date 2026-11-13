@@ -1,0 +1,20 @@
+{
+  "name": "VAAYANA (വായന) — ALP School Koottala",
+  "short_name": "VAAYANA",
+  "description": "Interactive smartboard teaching platform for Class 4 at ALP School Koottala",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#F1F4EE",
+  "theme_color": "#111713",
+  "lang": "ml",
+  "categories": ["education"],
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

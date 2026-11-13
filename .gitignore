@@ -1,0 +1,107 @@
+# =========================
+# VAAYANA — Git ignore rules
+# =========================
+
+# Secrets and environment files
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets/
+credentials/
+
+# Node / Vite / frontend
+node_modules/
+frontend/node_modules/
+frontend/dist/
+frontend/build/
+dist/
+build/
+.vite/
+*.tsbuildinfo
+coverage/
+
+# Python / FastAPI
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.hypothesis/
+.tox/
+.nox/
+.venv/
+venv/
+ENV/
+env/
+pip-wheel-metadata/
+wheels/
+*.egg-info/
+.eggs/
+
+# Local databases and runtime state
+*.db
+*.sqlite
+*.sqlite3
+*.db-journal
+*.sqlite-journal
+instance/
+backend/instance/
+backend/data/*.db
+backend/data/*.sqlite
+backend/data/*.sqlite3
+
+# Uploaded source material and generated runtime files
+uploads/
+backend/uploads/
+frontend/uploads/
+user_uploads/
+generated/
+backend/generated/
+temp/
+tmp/
+*.log
+logs/
+
+# Local textbook / document inputs (keep application documentation tracked)
+backend/data/*.pdf
+backend/data/*.doc
+backend/data/*.docx
+backend/data/*.ppt
+backend/data/*.pptx
+
+# Browser automation / test output
+playwright-report/
+test-results/
+.pytest_cache/
+.nyc_output/
+
+# Operating system
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editors and IDEs
+.vscode/
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.swp
+*.swo
+
+# Local backups
+*.bak
+*.backup
+*.old
+
+# Backup textbooks and private teaching materials
+backend/data/backup_pre_math_only/
+backend/data/**/*.pdf
+
+# Generated audit reports
+/acceptance_audit_report.txt
