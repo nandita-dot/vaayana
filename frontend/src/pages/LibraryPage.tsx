@@ -11,6 +11,8 @@ import {
   importLessonsFromJson
 } from '../services/storage';
 import { Lesson } from '../types';
+import { LibraryArtwork2D } from '../components/illustrations/LibraryArtwork2D';
+import { CALM_EASE } from '../animations/motionPresets';
 import {
   Library,
   Trash2,
@@ -158,21 +160,27 @@ export const LibraryPage: React.FC = () => {
 
       {/* Library Top Banner */}
       <div className="bg-[#111114] p-6 sm:p-8 rounded-3xl border border-[#2E263B] shadow-2xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-        <div className="space-y-1">
-          <div className="flex items-center gap-2.5">
-            <BookOpen className="w-6 h-6 text-[#7950B8]" />
-            <h1 className="text-2xl sm:text-3xl font-black text-[#EDE5F7]">
-              {language === 'ml' ? 'ലോക്കൽ പാഠശാല ലൈബ്രറി' : 'Local Lesson Library'}
-            </h1>
-            <span className="hidden sm:inline-flex items-center gap-1 text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-[#1D1A24] text-[#A881E6] border border-[#7950B8]/30">
-              <CheckCircle2 className="w-3 h-3 text-[#7950B8]" /> Offline Ready
-            </span>
+        <div className="flex items-center gap-5">
+          <div className="w-20 h-20 hidden lg:flex items-center justify-center shrink-0">
+            <LibraryArtwork2D className="w-full h-full" />
           </div>
-          <p className="text-xs sm:text-sm text-[#A59CB5] font-medium">
-            {language === 'ml'
-              ? 'നിങ്ങളുടെ ഉപകരണത്തിലെ SQLite & IndexedDB-ൽ സൂക്ഷിച്ച പാഠങ്ങൾ. ഇന്റർനെറ്റ് ഇല്ലാതെയും പ്രവർത്തിക്കും.'
-              : 'Lessons stored locally in SQLite and browser IndexedDB. Fully accessible without internet.'}
-          </p>
+
+          <div className="space-y-1">
+            <div className="flex items-center gap-2.5">
+              <BookOpen className="w-6 h-6 text-[#7950B8]" />
+              <h1 className="text-2xl sm:text-3xl font-black text-[#EDE5F7]">
+                {language === 'ml' ? 'ലോക്കൽ പാഠശാല ലൈബ്രറി' : 'Local Lesson Library'}
+              </h1>
+              <span className="hidden sm:inline-flex items-center gap-1 text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-[#1D1A24] text-[#A881E6] border border-[#7950B8]/30">
+                <CheckCircle2 className="w-3 h-3 text-[#8FAF91]" /> Offline Ready
+              </span>
+            </div>
+            <p className="text-xs sm:text-sm text-[#A59CB5] font-medium">
+              {language === 'ml'
+                ? 'നിങ്ങളുടെ ഉപകരണത്തിലെ SQLite & IndexedDB-ൽ സൂക്ഷിച്ച പാഠങ്ങൾ. ഇന്റർനെറ്റ് ഇല്ലാതെയും പ്രവർത്തിക്കും.'
+                : 'Lessons stored locally in SQLite and browser IndexedDB. Fully accessible without internet.'}
+            </p>
+          </div>
         </div>
 
         {/* Action Controls: Export All, Import, Reset */}

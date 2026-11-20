@@ -264,136 +264,155 @@ export const ThreeDShapeViewer: React.FC = () => {
                 )}
               </motion.div>
             ) : (
-              /* Actual 3D CSS Canvas */
-              <div 
-                className={`relative transition-transform duration-75 ${isAutoSpin ? 'animate-spin-slow-3d' : ''}`}
-                style={{
-                  width: '140px',
-                  height: '140px',
-                  transformStyle: 'preserve-3d',
-                  transform: `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`
-                }}
-              >
-                {selectedShape === 'cube' && (
-                  <>
-                    {/* Front */}
-                    <div 
-                      className={`absolute inset-0 border-2 flex items-center justify-center font-bold text-sm shadow-inner transition-colors ${highlightPart === 'faces' ? 'bg-lime-400/90 text-black border-lime-800' : 'bg-lime-500/80 text-white border-lime-700'}`}
-                      style={{ transform: 'translateZ(70px)' }}
-                    >
-                      Face 1
-                    </div>
-                    {/* Back */}
-                    <div 
-                      className={`absolute inset-0 border-2 flex items-center justify-center font-bold text-sm shadow-inner transition-colors ${highlightPart === 'faces' ? 'bg-lime-400/90 text-black border-lime-800' : 'bg-lime-600/80 text-white border-lime-700'}`}
-                      style={{ transform: 'rotateY(180deg) translateZ(70px)' }}
-                    >
-                      Face 2
-                    </div>
-                    {/* Right */}
-                    <div 
-                      className={`absolute inset-0 border-2 flex items-center justify-center font-bold text-sm shadow-inner transition-colors ${highlightPart === 'faces' ? 'bg-lime-400/90 text-black border-lime-800' : 'bg-lime-500/80 text-white border-lime-700'}`}
-                      style={{ transform: 'rotateY(90deg) translateZ(70px)' }}
-                    >
-                      Face 3
-                    </div>
-                    {/* Left */}
-                    <div 
-                      className={`absolute inset-0 border-2 flex items-center justify-center font-bold text-sm shadow-inner transition-colors ${highlightPart === 'faces' ? 'bg-lime-400/90 text-black border-lime-800' : 'bg-lime-600/80 text-white border-lime-700'}`}
-                      style={{ transform: 'rotateY(-90deg) translateZ(70px)' }}
-                    >
-                      Face 4
-                    </div>
-                    {/* Top */}
-                    <div 
-                      className={`absolute inset-0 border-2 flex items-center justify-center font-bold text-sm shadow-inner transition-colors ${highlightPart === 'faces' ? 'bg-lime-400/90 text-black border-lime-800' : 'bg-lime-400/80 text-white border-lime-700'}`}
-                      style={{ transform: 'rotateX(90deg) translateZ(70px)' }}
-                    >
-                      Top
-                    </div>
-                    {/* Bottom */}
-                    <div 
-                      className={`absolute inset-0 border-2 flex items-center justify-center font-bold text-sm shadow-inner transition-colors ${highlightPart === 'faces' ? 'bg-lime-400/90 text-black border-lime-800' : 'bg-lime-700/80 text-white border-lime-700'}`}
-                      style={{ transform: 'rotateX(-90deg) translateZ(70px)' }}
-                    >
-                      Bottom
-                    </div>
-                  </>
-                )}
+              /* Interactive 2D Vector Isometric Geometric Shape Visualizer */
+              <div className="w-full h-72 relative flex items-center justify-center p-4">
+                <svg viewBox="0 0 280 220" className="w-full h-full max-h-64 drop-shadow-md select-none">
+                  <defs>
+                    <linearGradient id="cubeTop" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0%" stopColor={highlightPart === 'faces' ? '#D9F99D' : '#C4B5FD'} />
+                      <stop offset="100%" stopColor={highlightPart === 'faces' ? '#BEF264' : '#A78BFA'} />
+                    </linearGradient>
+                    <linearGradient id="cubeLeft" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0%" stopColor={highlightPart === 'faces' ? '#A3E635' : '#8B5CF6'} />
+                      <stop offset="100%" stopColor={highlightPart === 'faces' ? '#84CC16' : '#7C3AED'} />
+                    </linearGradient>
+                    <linearGradient id="cubeRight" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0%" stopColor={highlightPart === 'faces' ? '#65A30D' : '#6D28D9'} />
+                      <stop offset="100%" stopColor={highlightPart === 'faces' ? '#4D7C0F' : '#5B21B6'} />
+                    </linearGradient>
 
-                {selectedShape === 'cuboid' && (
-                  <>
-                    {/* Front */}
-                    <div 
-                      className="absolute inset-0 bg-sky-500/80 border-2 border-sky-700 flex items-center justify-center font-bold text-sm text-white shadow-inner"
-                      style={{ width: '160px', height: '110px', transform: 'translateZ(50px) translateX(-10px)' }}
-                    >
-                      Front
-                    </div>
-                    {/* Back */}
-                    <div 
-                      className="absolute inset-0 bg-sky-600/80 border-2 border-sky-700 flex items-center justify-center font-bold text-sm text-white shadow-inner"
-                      style={{ width: '160px', height: '110px', transform: 'rotateY(180deg) translateZ(50px) translateX(10px)' }}
-                    >
-                      Back
-                    </div>
-                    {/* Right */}
-                    <div 
-                      className="absolute inset-0 bg-sky-400/80 border-2 border-sky-700 flex items-center justify-center font-bold text-xs text-white shadow-inner"
-                      style={{ width: '100px', height: '110px', transform: 'rotateY(90deg) translateZ(100px)' }}
-                    >
-                      Right
-                    </div>
-                    {/* Left */}
-                    <div 
-                      className="absolute inset-0 bg-sky-700/80 border-2 border-sky-700 flex items-center justify-center font-bold text-xs text-white shadow-inner"
-                      style={{ width: '100px', height: '110px', transform: 'rotateY(-90deg) translateZ(60px)' }}
-                    >
-                      Left
-                    </div>
-                    {/* Top */}
-                    <div 
-                      className="absolute inset-0 bg-sky-300/80 border-2 border-sky-700 flex items-center justify-center font-bold text-sm text-sky-950 shadow-inner"
-                      style={{ width: '160px', height: '100px', transform: 'rotateX(90deg) translateZ(55px) translateX(-10px)' }}
-                    >
-                      Top
-                    </div>
-                    {/* Bottom */}
-                    <div 
-                      className="absolute inset-0 bg-sky-800/80 border-2 border-sky-700 flex items-center justify-center font-bold text-sm text-white shadow-inner"
-                      style={{ width: '160px', height: '100px', transform: 'rotateX(-90deg) translateZ(55px) translateX(-10px)' }}
-                    >
-                      Base
-                    </div>
-                  </>
-                )}
+                    <linearGradient id="cuboidTop" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0%" stopColor={highlightPart === 'faces' ? '#D9F99D' : '#A7F3D0'} />
+                      <stop offset="100%" stopColor={highlightPart === 'faces' ? '#BEF264' : '#6EE7B7'} />
+                    </linearGradient>
+                    <linearGradient id="cuboidLeft" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0%" stopColor={highlightPart === 'faces' ? '#A3E635' : '#34D399'} />
+                      <stop offset="100%" stopColor={highlightPart === 'faces' ? '#84CC16' : '#10B981'} />
+                    </linearGradient>
+                    <linearGradient id="cuboidRight" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0%" stopColor={highlightPart === 'faces' ? '#65A30D' : '#059669'} />
+                      <stop offset="100%" stopColor={highlightPart === 'faces' ? '#4D7C0F' : '#047857'} />
+                    </linearGradient>
 
-                {selectedShape === 'cone' && (
-                  <>
-                    {/* Circular Base */}
-                    <div 
-                      className="absolute rounded-full bg-orange-500/90 border-4 border-orange-700 flex items-center justify-center text-xs font-bold text-white shadow-inner"
-                      style={{ width: '130px', height: '130px', transform: 'rotateX(90deg) translateZ(-60px)' }}
-                    >
-                      Circular Flat Base
-                    </div>
-                    {/* Conical body representation */}
-                    <div 
-                      className="absolute border-l-[65px] border-l-transparent border-r-[65px] border-r-transparent border-b-[130px] border-b-orange-400/80"
-                      style={{ transform: 'translateY(-30px)' }}
-                    />
-                    <div 
-                      className="absolute border-l-[65px] border-l-transparent border-r-[65px] border-r-transparent border-b-[130px] border-b-orange-600/80"
-                      style={{ transform: 'translateY(-30px) rotateY(90deg)' }}
-                    />
-                  </>
-                )}
+                    <linearGradient id="coneGrad" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0%" stopColor={highlightPart === 'faces' ? '#FDE047' : '#FED7AA'} />
+                      <stop offset="50%" stopColor={highlightPart === 'faces' ? '#FACC15' : '#FB923C'} />
+                      <stop offset="100%" stopColor={highlightPart === 'faces' ? '#EAB308' : '#EA580C'} />
+                    </linearGradient>
+                  </defs>
+
+                  {/* CUBE */}
+                  {selectedShape === 'cube' && (
+                    <g transform="translate(140, 110)">
+                      {/* Top Face */}
+                      <polygon
+                        points="0,-60 60,-25 0,10 -60,-25"
+                        fill="url(#cubeTop)"
+                        stroke={highlightPart === 'edges' ? '#F59E0B' : '#4C1D95'}
+                        strokeWidth={highlightPart === 'edges' ? 4 : 2}
+                      />
+                      {/* Left Face */}
+                      <polygon
+                        points="-60,-25 0,10 0,80 -60,45"
+                        fill="url(#cubeLeft)"
+                        stroke={highlightPart === 'edges' ? '#F59E0B' : '#4C1D95'}
+                        strokeWidth={highlightPart === 'edges' ? 4 : 2}
+                      />
+                      {/* Right Face */}
+                      <polygon
+                        points="0,10 60,-25 60,45 0,80"
+                        fill="url(#cubeRight)"
+                        stroke={highlightPart === 'edges' ? '#F59E0B' : '#4C1D95'}
+                        strokeWidth={highlightPart === 'edges' ? 4 : 2}
+                      />
+                      {/* Vertices Dots */}
+                      {highlightPart === 'vertices' && (
+                        <g fill="#38BDF8" stroke="#0369A1" strokeWidth="2">
+                          <circle cx="0" cy="-60" r="6" />
+                          <circle cx="60" cy="-25" r="6" />
+                          <circle cx="0" cy="10" r="6" />
+                          <circle cx="-60" cy="-25" r="6" />
+                          <circle cx="-60" cy="45" r="6" />
+                          <circle cx="0" cy="80" r="6" />
+                          <circle cx="60" cy="45" r="6" />
+                          <circle cx="0" cy="10" r="6" />
+                        </g>
+                      )}
+                    </g>
+                  )}
+
+                  {/* CUBOID */}
+                  {selectedShape === 'cuboid' && (
+                    <g transform="translate(140, 110)">
+                      {/* Top Face */}
+                      <polygon
+                        points="0,-50 90,-20 0,10 -90,-20"
+                        fill="url(#cuboidTop)"
+                        stroke={highlightPart === 'edges' ? '#F59E0B' : '#064E3B'}
+                        strokeWidth={highlightPart === 'edges' ? 4 : 2}
+                      />
+                      {/* Left Face */}
+                      <polygon
+                        points="-90,-20 0,10 0,65 -90,35"
+                        fill="url(#cuboidLeft)"
+                        stroke={highlightPart === 'edges' ? '#F59E0B' : '#064E3B'}
+                        strokeWidth={highlightPart === 'edges' ? 4 : 2}
+                      />
+                      {/* Right Face */}
+                      <polygon
+                        points="0,10 90,-20 90,35 0,65"
+                        fill="url(#cuboidRight)"
+                        stroke={highlightPart === 'edges' ? '#F59E0B' : '#064E3B'}
+                        strokeWidth={highlightPart === 'edges' ? 4 : 2}
+                      />
+                      {/* Vertices Dots */}
+                      {highlightPart === 'vertices' && (
+                        <g fill="#38BDF8" stroke="#0369A1" strokeWidth="2">
+                          <circle cx="0" cy="-50" r="6" />
+                          <circle cx="90" cy="-20" r="6" />
+                          <circle cx="0" cy="10" r="6" />
+                          <circle cx="-90" cy="-20" r="6" />
+                          <circle cx="-90" cy="35" r="6" />
+                          <circle cx="0" cy="65" r="6" />
+                          <circle cx="90" cy="35" r="6" />
+                        </g>
+                      )}
+                    </g>
+                  )}
+
+                  {/* CONE */}
+                  {selectedShape === 'cone' && (
+                    <g transform="translate(140, 105)">
+                      {/* Curved Surface Body */}
+                      <path
+                        d="M 0 -75 L 70 50 A 70 24 0 0 1 -70 50 Z"
+                        fill="url(#coneGrad)"
+                        stroke={highlightPart === 'edges' ? '#F59E0B' : '#9A3412'}
+                        strokeWidth={highlightPart === 'edges' ? 3 : 2}
+                      />
+                      {/* Base Ellipse Rim */}
+                      <ellipse
+                        cx="0"
+                        cy="50"
+                        rx="70"
+                        ry="24"
+                        fill={highlightPart === 'faces' ? '#FDE047' : '#FED7AA'}
+                        stroke={highlightPart === 'edges' ? '#F59E0B' : '#9A3412'}
+                        strokeWidth={highlightPart === 'edges' ? 4 : 2}
+                      />
+                      {/* Apex Vertex Dot */}
+                      {highlightPart === 'vertices' && (
+                        <circle cx="0" cy="-75" r="7" fill="#38BDF8" stroke="#0369A1" strokeWidth="2.5" />
+                      )}
+                    </g>
+                  )}
+                </svg>
               </div>
             )}
           </div>
 
           <div className="w-full text-center text-xs font-bold text-vaayana-textDarkMuted border-t border-vaayana-softBorder pt-3">
-            {language === 'ml' ? 'സ്ക്രീനിൽ തൊട്ട് 3D യിൽ തിരിക്കാം' : 'Touch and swipe to inspect from all angles'}
+            {language === 'ml' ? 'ജ്യാമിതീയ ഘടന വ്യക്തമായി കാണാം' : 'Clear interactive geometric model'}
           </div>
         </div>
 

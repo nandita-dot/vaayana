@@ -27,8 +27,8 @@
     color-scheme: dark;
   }
   body {
-    background-color: #090909; /* Deep black background */
-    color: #EDE5F7;            /* Main soft lavender/white text */
+    background-color: #09080F; /* Deep near-black background */
+    color: #EDE5F7;            /* Soft lavender-white typography */
     -webkit-tap-highlight-color: transparent;
     user-select: text;
     line-height: 1.6;
@@ -233,3 +233,51 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #7950B8;
 }
+
+/* =========================================================================
+   UNIVERSAL HIGH-CONTRAST READABILITY & CONTRAST ENHANCEMENTS
+   Ensures text never disappears against colored cards, buttons, or modals
+   ========================================================================= */
+
+/* 1. Ensure all vaayana-lime buttons, badges, and pills render crisp white text */
+.bg-vaayana-lime.text-vaayana-dark,
+.bg-vaayana-lime .text-vaayana-dark,
+button.bg-vaayana-lime,
+.bg-vaayana-lime {
+  color: #FFFFFF !important;
+}
+.bg-vaayana-lime svg,
+button.bg-vaayana-lime svg {
+  color: #FFFFFF !important;
+}
+
+/* 2. Form controls & inputs placeholder readability */
+input::placeholder,
+textarea::placeholder {
+  color: #A59CB5 !important;
+  opacity: 0.85 !important;
+}
+
+/* 3. Form control borders and focus states */
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: #7950B8 !important;
+  box-shadow: 0 0 0 2px rgba(121, 80, 184, 0.35) !important;
+}
+
+/* 4. Disabled states remain discernible yet clearly disabled */
+button:disabled,
+input:disabled,
+select:disabled {
+  opacity: 0.55 !important;
+  cursor: not-allowed !important;
+}
+
+/* 5. Subdued text readability on dark cards */
+.text-vaayana-darkMuted,
+.text-vaayana-textLightMuted,
+.text-vaayana-textDarkMuted {
+  color: #BDB4CC !important;
+}
+

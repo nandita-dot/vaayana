@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
-import { getAllLessons } from '../services/storage';
+import { getAllLessons, isUnwantedChapter } from '../services/storage';
 import { checkAiStatus, fetchDbLessons } from '../services/api';
 import { Lesson, AiStatusResponse } from '../types';
 import { UploadModal } from '../components/UploadModal';
+import { LibraryArtwork2D } from '../components/illustrations/LibraryArtwork2D';
+import { CALM_EASE } from '../animations/motionPresets';
 import { 
   Upload, 
   Sparkles, 
@@ -41,14 +43,18 @@ export const TeacherWorkspace: React.FC = () => {
       const dbList = await fetchDbLessons();
       
       const lessonMap = new Map<string, Lesson>();
-      dbList.forEach(l => lessonMap.set(l.id, l));
-      localList.forEach(l => lessonMap.set(l.id, l));
+      dbList.forEach(l => {
+        if (!isUnwantedChapter(l)) lessonMap.set(l.id, l);
+      });
+      localList.forEach(l => {
+        if (!isUnwantedChapter(l)) lessonMap.set(l.id, l);
+      });
       
       setLessons(Array.from(lessonMap.values()));
     } catch (e) {
       console.warn('Error loading lessons:', e);
       const list = await getAllLessons();
-      setLessons(list);
+      setLessons(list.filter(l => !isUnwantedChapter(l)));
     }
   };
 
@@ -109,15 +115,21 @@ export const TeacherWorkspace: React.FC = () => {
           </p>
         </div>
 
-        {/* Primary Action Buttons */}
-        <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
-          <button
-            onClick={() => setIsModalOpen(true)}
-            className="flex items-center justify-center gap-2 px-7 py-4 rounded-2xl bg-[#563580] hover:bg-[#683FA7] text-white font-black text-sm sm:text-base shadow-lg shadow-purple-950/50 transition-all hover:scale-105"
-          >
-            <Upload className="w-5 h-5 text-white" />
-            <span>{t('uploadTextbook')}</span>
-          </button>
+        {/* Right side: Educational 2D Vignette & Actions */}
+        <div className="flex flex-col sm:flex-row items-center gap-4 w-full md:w-auto">
+          <div className="w-24 h-24 hidden lg:flex items-center justify-center shrink-0">
+            <LibraryArtwork2D className="w-full h-full" />
+          </div>
+
+          <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className="flex items-center justify-center gap-2 px-7 py-4 rounded-2xl bg-[#563580] hover:bg-[#683FA7] text-white font-black text-sm sm:text-base shadow-lg shadow-purple-950/50 transition-all hover:scale-105 active:scale-95"
+            >
+              <Upload className="w-5 h-5 text-white" />
+              <span>{t('uploadTextbook')}</span>
+            </button>
+          </div>
         </div>
       </div>
 
@@ -159,7 +171,7 @@ export const TeacherWorkspace: React.FC = () => {
             </select>
           </div>
 
-          {/* Subject Selector - Mathematics & Environmental Studies */}
+          {/* Subject Selector - Mathematics, EVS & English */}
           <div>
             <select
               value={selectedSubject}
@@ -169,6 +181,7 @@ export const TeacherWorkspace: React.FC = () => {
               <option value="all">All Subjects (എല്ലാ വിഷയങ്ങളും)</option>
               <option value="Mathematics">Mathematics (ഗണിതം)</option>
               <option value="Environmental Studies">Environmental Studies (പരിസരപഠനം)</option>
+              <option value="English">English (ഇംഗ്ലീഷ്)</option>
             </select>
           </div>
 
@@ -191,12 +204,14 @@ export const TeacherWorkspace: React.FC = () => {
         </div>
 
         {filteredLessons.length === 0 ? (
-          <div className="bg-vaayana-darkSurface p-12 rounded-3xl border border-dashed border-vaayana-darkBorder text-center space-y-4">
-            <BookOpen className="w-12 h-12 text-vaayana-textLightMuted mx-auto" />
-            <p className="text-vaayana-textLightMuted font-medium">{t('noLessonsFound')}</p>
+          <div className="bg-[#111114] p-12 rounded-3xl border border-dashed border-[#2E263B] text-center space-y-4">
+            <div className="w-24 h-24 mx-auto flex items-center justify-center">
+              <LibraryArtwork2D className="w-full h-full" />
+            </div>
+            <p className="text-[#A59CB5] font-medium">{t('noLessonsFound')}</p>
             <button
               onClick={() => setIsModalOpen(true)}
-              className="px-6 py-3 rounded-2xl bg-vaayana-lime text-vaayana-dark font-black text-sm shadow-limeGlow"
+              className="px-6 py-3 rounded-2xl bg-[#563580] hover:bg-[#683FA7] text-white font-black text-sm shadow-md transition-all active:scale-95"
             >
               {t('createLesson')}
             </button>

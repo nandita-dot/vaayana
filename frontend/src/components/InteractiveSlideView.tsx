@@ -43,6 +43,7 @@ import { BackwatersExplorer } from './activities/BackwatersExplorer';
 import { EducationalVideo } from './EducationalVideo';
 import { EmphasisWordAnimator } from './animations/EmphasisWordAnimator';
 import { ConceptAnimator } from './animations/ConceptAnimator';
+import { ChapterIllustration2D } from './illustrations/ChapterIllustration2D';
 import { 
   CheckCircle2, 
   Sparkles, 
@@ -77,10 +78,7 @@ export const InteractiveSlideView: React.FC<InteractiveSlideViewProps> = ({
   const keyPoints = (language === 'ml' ? slide.keyPointsMl : slide.keyPointsEn) || slide.keyPointsEn || slide.keyPointsMl || [];
 
   return (
-    <motion.div 
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.3 }}
+    <div 
       className="bg-[#111114] rounded-4xl p-6 sm:p-10 border border-[#2E263B] shadow-2xl space-y-6 select-none transition-all duration-300"
       style={{ fontSize: `${fontScale * 100}%` }}
     >
@@ -202,8 +200,8 @@ export const InteractiveSlideView: React.FC<InteractiveSlideViewProps> = ({
 
           {/* Accompanying narrative below manipulative */}
           {content && (
-            <div className="p-6 bg-vaayana-softSurface rounded-3xl border border-vaayana-softBorder shadow-soft space-y-2">
-              <p className={`text-base sm:text-xl text-vaayana-textDark leading-relaxed font-medium ${language === 'ml' ? 'font-malayalam' : ''}`}>
+            <div className="p-6 bg-[#17151B] rounded-3xl border border-[#2E263B] shadow-darkCard space-y-2">
+              <p className={`text-base sm:text-xl text-[#EDE5F7] leading-relaxed font-medium ${language === 'ml' ? 'font-malayalam' : ''}`}>
                 {content}
               </p>
               {keyPoints.length > 0 && (
@@ -241,9 +239,15 @@ export const InteractiveSlideView: React.FC<InteractiveSlideViewProps> = ({
               </div>
 
               <div className="space-y-3">
-                <div className="w-full min-h-[160px] rounded-2xl bg-[#111114] border border-[#2E263B] p-5 flex flex-col items-center justify-center text-center shadow-inner">
-                  <Lightbulb className="w-12 h-12 text-amber-400 animate-bounce mb-2" />
-                  <p className="text-sm sm:text-base font-bold text-[#EDE5F7] font-malayalam leading-relaxed">
+                <div className="w-full min-h-[190px] rounded-2xl bg-[#111114] border border-[#2E263B] p-4 flex flex-col items-center justify-center text-center shadow-inner relative overflow-hidden">
+                  <div className="w-full h-32 mb-2 flex items-center justify-center">
+                    <ChapterIllustration2D
+                      topic={slide.slideType || ''}
+                      chapterTitle={`${slide.titleEn || ''} ${slide.titleMl || ''}`}
+                      className="w-full h-full"
+                    />
+                  </div>
+                  <p className="text-xs sm:text-sm font-bold text-[#EDE5F7] font-malayalam leading-relaxed">
                     {language === 'ml'
                       ? (slide.visualDescriptionMl || slide.visualDescriptionEn || 'ആശയത്തെ വ്യക്തമാക്കുന്ന ദൃശ്യം')
                       : (slide.visualDescriptionEn || slide.visualDescriptionMl || 'Diagram illustrating concept')}
@@ -264,15 +268,15 @@ export const InteractiveSlideView: React.FC<InteractiveSlideViewProps> = ({
           </div>
 
           {/* Right/Bottom: Story Narrative & Key Insights */}
-          <div className="lg:col-span-7 bg-vaayana-softSurface p-6 sm:p-8 rounded-3xl border border-vaayana-softBorder shadow-card flex flex-col justify-between space-y-6">
+          <div className="lg:col-span-7 bg-[#17151B] p-6 sm:p-8 rounded-3xl border border-[#2E263B] shadow-darkCard flex flex-col justify-between space-y-6">
             
             <div className="space-y-4">
-              <p className={`text-lg sm:text-2xl text-vaayana-textDark leading-relaxed font-medium ${language === 'ml' ? 'font-malayalam' : ''}`}>
+              <p className={`text-lg sm:text-2xl text-[#EDE5F7] leading-relaxed font-medium ${language === 'ml' ? 'font-malayalam' : ''}`}>
                 {content}
               </p>
 
               {bilingualView && (
-                <p className="text-base text-vaayana-textDarkMuted leading-relaxed italic border-t border-vaayana-softMuted pt-3">
+                <p className="text-base text-[#A59CB5] leading-relaxed italic border-t border-[#2E263B] pt-3">
                   {language === 'ml' ? slide.contentEn : slide.contentMl}
                 </p>
               )}
@@ -281,7 +285,7 @@ export const InteractiveSlideView: React.FC<InteractiveSlideViewProps> = ({
             {/* Smartboard Touch Reveal Points */}
             {(keyPoints || []).length > 0 && (
               <div className="space-y-3 pt-2">
-                <span className="text-xs font-black uppercase tracking-wider text-vaayana-textDarkMuted block">
+                <span className="text-xs font-black uppercase tracking-wider text-[#A59CB5] block">
                   {language === 'ml' ? 'പ്രധാന വസ്തുതകൾ (തൊട്ട് തുറക്കാം):' : 'Key Classroom Takeaways (Tap to Reveal):'}
                 </span>
 
@@ -356,7 +360,7 @@ export const InteractiveSlideView: React.FC<InteractiveSlideViewProps> = ({
         </div>
       )}
 
-    </motion.div>
+    </div>
   );
 };
 

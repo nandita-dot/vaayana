@@ -68,6 +68,8 @@ const KERALA_PRESETS: Array<{ grade: Grade; subject: Subject; chapter: string }>
   { grade: 'Class 4', subject: 'Environmental Studies', chapter: 'നമുക്ക് ചുറ്റും പല രൂപങ്ങളിൽ (Around Us in Different Forms)' },
   { grade: 'Class 4', subject: 'Environmental Studies', chapter: 'ആകാശവിസ്മയങ്ങൾ (Marvels of the Sky)' },
   { grade: 'Class 4', subject: 'Environmental Studies', chapter: 'ദിശകൾ അറിയാം, നാടറിയാം: വഴിയറിയാം നാടറിയാം (Know the Directions and Know Our Homeland)' },
+  { grade: 'Class 4', subject: 'English', chapter: 'The Seed of Truth: Pingala and the Roasted Seed (Unit 1)' },
+  { grade: 'Class 4', subject: 'English', chapter: 'The Wooden Cup: Love, Kindness & Elders (Unit 2)' },
 ];
 
 export const UploadModal: React.FC<UploadModalProps> = ({
@@ -128,6 +130,12 @@ export const UploadModal: React.FC<UploadModalProps> = ({
       checkAiStatus().then(status => {
         setAiStatus(status);
       });
+      // Lock background scrolling and navigation interference while modal is open
+      const originalOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = originalOverflow;
+      };
     }
   }, [isOpen]);
 
@@ -399,34 +407,34 @@ export const UploadModal: React.FC<UploadModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/80 backdrop-blur-md animate-fadeIn">
-      <div className="bg-vaayana-soft w-full max-w-4xl rounded-4xl border border-vaayana-softBorder shadow-lifted overflow-hidden flex flex-col max-h-[92vh]">
+    <div className="fixed inset-0 z-[60] flex items-center justify-center p-3 sm:p-6 bg-black/80 backdrop-blur-md animate-fadeIn">
+      <div className="bg-[#130F1C] w-full max-w-4xl rounded-4xl border border-[#2E263B] shadow-2xl overflow-hidden flex flex-col max-h-[92vh]">
         
-        {/* Header (Dominant Dark Surface with Lime Accent) */}
-        <div className="px-6 py-4.5 border-b border-vaayana-darkBorder flex items-center justify-between bg-vaayana-dark text-vaayana-textLight">
+        {/* Header (Cohesive Dark Surface with Purple Accent) */}
+        <div className="px-6 py-4.5 border-b border-[#2E263B] flex items-center justify-between bg-[#0F0C18] text-[#EDE5F7]">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-vaayana-lime text-vaayana-dark flex items-center justify-center font-black shadow-limeGlow">
-              <Sparkles className="w-5 h-5 text-vaayana-dark" />
+            <div className="w-10 h-10 rounded-2xl bg-[#563580] text-white flex items-center justify-center font-black shadow-md">
+              <Sparkles className="w-5 h-5 text-white" />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h3 className="text-lg sm:text-xl font-black text-vaayana-textLight">
+                <h3 className="text-lg sm:text-xl font-black text-[#EDE5F7]">
                   {modalMode === 'review'
                     ? (language === 'ml' ? 'പാഠം അവലോകനം ചെയ്യുക' : 'Review & Customize Lesson')
                     : (language === 'ml' ? 'ഇന്ററാക്ടീവ് പാഠം നിർമ്മിക്കുക' : 'Create Interactive Lesson')}
                 </h3>
                 {aiStatus.aiAvailable ? (
-                  <span className="hidden sm:inline-flex items-center gap-1 text-[11px] font-black px-2.5 py-0.5 rounded-full bg-vaayana-darkElevated text-vaayana-lime border border-vaayana-lime/30">
-                    <span className="w-1.5 h-1.5 rounded-full bg-vaayana-lime animate-pulse"></span>
+                  <span className="hidden sm:inline-flex items-center gap-1 text-[11px] font-black px-2.5 py-0.5 rounded-full bg-[#1D1A24] text-[#A881E6] border border-[#7950B8]/40">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#72D6B0] animate-pulse"></span>
                     Gemini Active
                   </span>
                 ) : (
-                  <span className="hidden sm:inline-flex items-center gap-1 text-[11px] font-bold px-2 py-0.5 rounded-full bg-vaayana-darkElevated text-vaayana-textLightMuted border border-vaayana-darkBorder">
+                  <span className="hidden sm:inline-flex items-center gap-1 text-[11px] font-bold px-2 py-0.5 rounded-full bg-[#1D1A24] text-[#A59CB5] border border-[#2E263B]">
                     Deterministic Template
                   </span>
                 )}
               </div>
-              <p className="text-xs text-vaayana-textLightMuted font-medium">
+              <p className="text-xs text-[#A59CB5] font-medium">
                 {modalMode === 'review'
                   ? (language === 'ml' ? 'ക്ലാസ്സ് മുറിയിൽ പഠിപ്പിക്കുന്നതിന് മുൻപ് വിവരങ്ങൾ മാറ്റിയെഴുതാം' : 'Verify, edit concepts, vocabulary, and quiz before classroom launch')
                   : (language === 'ml' ? 'പാഠപുസ്തകത്തിൽ നിന്ന് സ്മാർട്ട്ബോർഡ് പാഠങ്ങളിലേക്ക്' : 'Transform Kerala SCERT textbook pages into visual lessons')}
@@ -436,14 +444,14 @@ export const UploadModal: React.FC<UploadModalProps> = ({
 
           <button
             onClick={onClose}
-            className="p-2 rounded-xl text-vaayana-textLightMuted hover:text-vaayana-lime hover:bg-vaayana-darkElevated transition-colors"
+            className="p-2 rounded-xl text-[#A59CB5] hover:text-[#EDE5F7] hover:bg-[#1D1A24] transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Modal Body */}
-        <div className="p-4 sm:p-6 overflow-y-auto space-y-5 flex-1 bg-vaayana-soft text-vaayana-textDark">
+        <div className="p-4 sm:p-6 overflow-y-auto space-y-5 flex-1 bg-[#130F1C] text-[#EDE5F7]">
 
           {/* MODE 1: GENERATING STATE */}
           {modalMode === 'generating' && (
@@ -1600,14 +1608,13 @@ export const UploadModal: React.FC<UploadModalProps> = ({
         </div>
 
         {/* Modal Footer */}
-        {/* Footer (Dark bar with Lime Primary Actions) */}
-        <div className="px-6 py-4.5 border-t border-vaayana-darkBorder bg-vaayana-dark flex items-center justify-between text-vaayana-textLight">
+        <div className="px-6 py-4.5 border-t border-[#2E263B] bg-[#0F0C18] flex items-center justify-between text-[#EDE5F7]">
           {modalMode === 'input' ? (
             <>
               <button
                 onClick={onClose}
                 disabled={isLoading}
-                className="px-4 py-2 text-sm font-bold text-vaayana-textLightMuted hover:text-vaayana-textLight"
+                className="px-4 py-2 text-sm font-bold text-[#A59CB5] hover:text-[#EDE5F7]"
               >
                 Cancel
               </button>
@@ -1617,7 +1624,7 @@ export const UploadModal: React.FC<UploadModalProps> = ({
                 <button
                   onClick={() => handleGenerate(true)}
                   disabled={isLoading || !chapterTitle.trim()}
-                  className="px-4 py-2.5 rounded-xl border border-vaayana-darkBorder hover:bg-vaayana-darkElevated text-vaayana-textLight font-bold text-xs transition-all"
+                  className="px-4 py-2.5 rounded-xl border border-[#2E263B] hover:bg-[#1D1A24] text-[#EDE5F7] font-bold text-xs transition-all"
                 >
                   Create SCERT Template
                 </button>
@@ -1626,9 +1633,9 @@ export const UploadModal: React.FC<UploadModalProps> = ({
                 <button
                   onClick={() => handleGenerate(false)}
                   disabled={isLoading || !chapterTitle.trim()}
-                  className="flex items-center gap-2 px-6 py-3 rounded-2xl bg-vaayana-lime hover:bg-vaayana-limeHover disabled:opacity-40 text-vaayana-dark font-black text-sm shadow-limeGlow transition-all"
+                  className="flex items-center gap-2 px-6 py-3 rounded-2xl bg-[#563580] hover:bg-[#683FA7] disabled:opacity-40 text-white font-black text-sm shadow-md transition-all"
                 >
-                  <Sparkles className="w-4 h-4 text-vaayana-dark" />
+                  <Sparkles className="w-4 h-4 text-white" />
                   <span>
                     {aiStatus.aiAvailable 
                       ? (language === 'ml' ? 'Gemini AI ഉപയോഗിച്ച് തയ്യാറാക്കുക' : 'Generate with Gemini AI')
@@ -1641,7 +1648,7 @@ export const UploadModal: React.FC<UploadModalProps> = ({
             <>
               <button
                 onClick={() => setModalMode('input')}
-                className="px-4 py-2 text-xs font-bold text-vaayana-textLightMuted hover:text-vaayana-textLight"
+                className="px-4 py-2 text-xs font-bold text-[#A59CB5] hover:text-[#EDE5F7]"
               >
                 Back to Source
               </button>
@@ -1649,25 +1656,25 @@ export const UploadModal: React.FC<UploadModalProps> = ({
               <div className="flex flex-wrap items-center gap-2">
                 <button
                   onClick={() => handleSaveLesson(false, false)}
-                  className="px-4 py-2.5 rounded-xl bg-vaayana-darkElevated border border-vaayana-darkBorder hover:bg-vaayana-darkSurface text-vaayana-textLight font-bold text-xs transition-all shadow-sm"
+                  className="px-4 py-2.5 rounded-xl bg-[#1D1A24] border border-[#2E263B] hover:bg-[#282136] text-[#EDE5F7] font-bold text-xs transition-all shadow-sm"
                 >
                   {language === 'ml' ? 'കരടായി സൂക്ഷിക്കുക' : 'Save as Draft'}
                 </button>
 
                 <button
                   onClick={() => handleSaveLesson(false, true)}
-                  className="px-4 py-2.5 rounded-xl bg-vaayana-darkElevated hover:bg-vaayana-darkSurface text-vaayana-lime border border-vaayana-lime/40 font-black text-xs transition-all shadow-sm flex items-center gap-1.5"
+                  className="px-4 py-2.5 rounded-xl bg-[#1D1A24] hover:bg-[#282136] text-[#72D6B0] border border-[#72D6B0]/40 font-black text-xs transition-all shadow-sm flex items-center gap-1.5"
                 >
-                  <CheckCircle2 className="w-3.5 h-3.5 text-vaayana-lime" />
+                  <CheckCircle2 className="w-3.5 h-3.5 text-[#72D6B0]" />
                   <span>{language === 'ml' ? 'ക്ലാസ്സിന് അംഗീകരിക്കുക' : 'Approve for Classroom'}</span>
                 </button>
 
                 <button
                   onClick={() => handleSaveLesson(true, true)}
-                  className="flex items-center gap-2 px-5 py-2.5 rounded-2xl bg-vaayana-lime hover:bg-vaayana-limeHover text-vaayana-dark font-black text-xs sm:text-sm shadow-limeGlow transition-all"
+                  className="flex items-center gap-2 px-5 py-2.5 rounded-2xl bg-[#563580] hover:bg-[#683FA7] text-white font-black text-xs sm:text-sm shadow-md transition-all"
                 >
                   <span>{language === 'ml' ? 'അംഗീകരിച്ച് ക്ലാസ്സ് തുറക്കുക' : 'Approve & Launch Classroom'}</span>
-                  <ArrowRight className="w-4 h-4 text-vaayana-dark" />
+                  <ArrowRight className="w-4 h-4 text-white" />
                 </button>
               </div>
             </>

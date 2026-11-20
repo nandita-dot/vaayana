@@ -36,6 +36,11 @@ export default {
           softLavender: '#EDE5F7',
           warmBeige: '#F5F0E6',
           warmIvory: '#E8DDC8',
+          sandBeige: '#D8CBB5',
+          mutedGreen: '#8FAF91',
+          softGreen: '#A8BFA5',
+          deepGreen: '#728D73',
+          tenderGreen: '#DCE8D8',
         },
         // Playful Child-Friendly Accents (Selective pops of colour on dark canvas)
         playful: {
@@ -52,6 +57,24 @@ export default {
           error: '#EF4444',
           warning: '#F59E0B',
           info: '#3B82F6',
+        },
+        // High-Contrast Theme Harmonization for Slate & Navy classes
+        slate: {
+          50: '#17151B',
+          100: '#1D1A24',
+          200: '#2E263B',
+          300: '#3D334E',
+          400: '#BDB4CC',
+          500: '#D4CCE0',
+          600: '#EDE5F7',
+          700: '#FAF6EE',
+          800: '#FFFFFF',
+          900: '#FFFFFF',
+        },
+        navy: {
+          700: '#D4CCE0',
+          800: '#EDE5F7',
+          900: '#FAF6EE',
         }
       },
       fontFamily: {

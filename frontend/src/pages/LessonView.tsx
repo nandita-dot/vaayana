@@ -59,14 +59,20 @@ import { BackwatersExplorer } from '../components/activities/BackwatersExplorer'
 import { EducationalVideo } from '../components/EducationalVideo';
 import { ChapterTransition } from '../components/animations/ChapterTransition';
 import { SoundControl } from '../components/SoundControl';
+import { INITIAL_LESSONS } from '../data/sampleLessons';
 
 export const LessonView: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const { language, t } = useLanguage();
 
-  const [lesson, setLesson] = useState<Lesson | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [lesson, setLesson] = useState<Lesson | null>(() => {
+    if (id) {
+      return INITIAL_LESSONS.find(l => l.id === id) || null;
+    }
+    return null;
+  });
+  const [loading, setLoading] = useState(() => !INITIAL_LESSONS.some(l => l.id === id));
   
   // Restore slide progress from sessionStorage if available
   const [currentSlideIndex, setCurrentSlideIndex] = useState<number>(() => {
@@ -157,12 +163,29 @@ export const LessonView: React.FC = () => {
       id: 'scert-std4-evs-around-us-different-forms',
       titleEn: 'Chapter 1 — Around Us in Different Forms',
       titleMl: 'അധ്യായം 1 — നമുക്ക് ചുറ്റും പല രൂപങ്ങളിൽ'
+    },
+    'scert-std4-english-ch1-the-seed-of-truth': {
+      id: 'scert-std4-english-ch1-the-seed-of-truth',
+      titleEn: 'Unit 1 — The Seed of Truth',
+      titleMl: 'യൂണിറ്റ് 1 — സത്യത്തിന്റെ വിത്ത്'
     }
   };
 
   // Canvas drawing reference for smartboard annotation
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const isPaintingRef = useRef(false);
+
+  // Synchronize canvas internal buffer size to bounding box for 1:1 pixel coordinate accuracy
+  useEffect(() => {
+    if (isDrawing && canvasRef.current) {
+      const canvas = canvasRef.current;
+      const rect = canvas.getBoundingClientRect();
+      if (rect.width > 0 && rect.height > 0) {
+        canvas.width = rect.width;
+        canvas.height = rect.height;
+      }
+    }
+  }, [isDrawing]);
 
   useEffect(() => {
     if (id) {
@@ -459,35 +482,35 @@ export const LessonView: React.FC = () => {
               className="bg-vaayana-soft rounded-4xl p-6 sm:p-8 border border-vaayana-softBorder shadow-lifted space-y-6"
             >
               {/* Mathematics Smartboard Manipulatives Tab Bar */}
-              <div className="flex flex-wrap items-center justify-between gap-3 p-3 bg-[#F6F2FA] rounded-2xl border border-[#EDE5F7]">
+              <div className="flex flex-wrap items-center justify-between gap-3 p-3.5 bg-[#111114] rounded-2xl border border-[#2E263B] shadow-sm">
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className="text-xs font-bold text-[#746C80] px-2">
+                  <span className="text-xs font-bold text-[#A59CB5] px-2">
                     {language === 'ml' ? 'കളിക്കളങ്ങൾ:' : 'Manipulatives:'}
                   </span>
 
                   {/* Open Abacus Button */}
                   <button
                     onClick={() => setSelectedActivityOverride('abacus')}
-                    className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-black transition-all active:scale-95 ${
+                    className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-black transition-all active:scale-95 cursor-pointer ${
                       displayedActivity === 'abacus'
                         ? 'bg-[#7950B8] text-white shadow-sm'
-                        : 'bg-white text-[#563580] hover:bg-[#EDE5F7] border border-[#EDE5F7]'
+                        : 'bg-[#17151B] text-[#EDE5F7] hover:bg-[#1D1A24] border border-[#2E263B]'
                     }`}
                   >
-                    <Calculator className="w-4 h-4" />
+                    <Calculator className="w-4 h-4 text-[#72D6B0]" />
                     <span>{language === 'ml' ? 'അബാക്കസ് (Open Abacus)' : 'Open Abacus'}</span>
                   </button>
 
                   {/* Open Interactive Clock Button */}
                   <button
                     onClick={() => setSelectedActivityOverride('interactive_clock')}
-                    className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-black transition-all active:scale-95 ${
+                    className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-black transition-all active:scale-95 cursor-pointer ${
                       displayedActivity === 'interactive_clock' || displayedActivity === 'clock'
                         ? 'bg-[#7950B8] text-white shadow-sm'
-                        : 'bg-white text-[#563580] hover:bg-[#EDE5F7] border border-[#EDE5F7]'
+                        : 'bg-[#17151B] text-[#EDE5F7] hover:bg-[#1D1A24] border border-[#2E263B]'
                     }`}
                   >
-                    <Clock className="w-4 h-4" />
+                    <Clock className="w-4 h-4 text-[#FFD166]" />
                     <span>{language === 'ml' ? 'ഘടികാരം (Open Interactive Clock)' : 'Open Interactive Clock'}</span>
                   </button>
 
@@ -495,7 +518,7 @@ export const LessonView: React.FC = () => {
                   {selectedActivityOverride && (
                     <button
                       onClick={() => setSelectedActivityOverride(null)}
-                      className="px-3 py-2 rounded-xl text-xs font-bold text-[#563580] hover:text-[#292333] bg-white border border-[#EDE5F7]"
+                      className="px-3.5 py-2 rounded-xl text-xs font-bold text-[#A59CB5] hover:text-[#EDE5F7] bg-[#17151B] hover:bg-[#1D1A24] border border-[#2E263B] cursor-pointer"
                     >
                       {language === 'ml' ? 'പാഠത്തിലെ കളിക്കളം' : 'Slide Default'}
                     </button>
@@ -505,9 +528,9 @@ export const LessonView: React.FC = () => {
                 {/* Preview Chapter Completion Button */}
                 <button
                   onClick={() => setIsChapterCompleteOpen(true)}
-                  className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-black bg-[#EDE5F7] hover:bg-[#E5DCF2] text-[#563580] border border-[#7950B8]/30 transition-all active:scale-95 shadow-xs"
+                  className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-black bg-[#1D1A24] hover:bg-[#2A2038] text-[#EDE5F7] border border-[#7950B8]/40 transition-all active:scale-95 shadow-xs cursor-pointer"
                 >
-                  <Plane className="w-4 h-4 text-[#7950B8]" />
+                  <Plane className="w-4 h-4 text-[#A881E6]" />
                   <span>{language === 'ml' ? 'വിമാനം കാണുക (Preview)' : 'Preview Chapter Completion'}</span>
                 </button>
               </div>
@@ -556,10 +579,10 @@ export const LessonView: React.FC = () => {
           ) : viewMode === 'slides' && currentSlide ? (
             <motion.div
               key={`slide-${currentSlideIndex}`}
-              initial={{ opacity: 0, x: 20 }}
+              initial={{ opacity: 0.85, x: 6 }}
               animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              transition={{ duration: 0.25 }}
+              exit={{ opacity: 0.85, x: -6 }}
+              transition={{ duration: 0.18, ease: 'easeOut' }}
             >
               <InteractiveSlideView
                 slide={currentSlide}

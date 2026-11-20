@@ -6,6 +6,27 @@ const DB_NAME = 'drishti_educational_db';
 const DB_VERSION = 1;
 const STORE_NAME = 'lessons';
 
+/**
+ * Detects whether a lesson or chapter corresponds to deprecated/unwanted legacy entries:
+ * - 'Part 2: English'
+ * - 'CNR Interactive...'
+ * - '04 English Reader'
+ */
+export function isUnwantedChapter(lesson?: Partial<Lesson> | { id?: string; titleEn?: string; titleMl?: string; chapter?: string } | null): boolean {
+  if (!lesson) return true;
+  const signature = `${lesson.id || ''} ${lesson.titleEn || ''} ${lesson.titleMl || ''} ${lesson.chapter || ''}`.toLowerCase();
+  
+  if (signature.includes('part 2') || signature.includes('part 2: english') || signature.includes('part 2 - english')) return true;
+  if (signature.includes('cnr interactive') || signature.includes('cnr')) return true;
+  if (signature.includes('04 english reader') || signature.includes('04_english reader')) return true;
+  
+  // Specific legacy IDs
+  const legacyIds = ['lesson-f6cd3799', 'lesson-10e22c9c', 'lesson-6aa2afdb', 'lesson-audit-actual', 'chap-audit-actual', 'chap-1e00f8e7e7'];
+  if (lesson.id && legacyIds.some(lid => lesson.id!.toLowerCase().includes(lid))) return true;
+
+  return false;
+}
+
 function openDatabase(): Promise<IDBDatabase> {
   return new Promise((resolve, reject) => {
     if (typeof window === 'undefined' || !window.indexedDB) {
@@ -67,21 +88,51 @@ export async function initializeStorage(): Promise<void> {
       store.delete('scert-std4-evs-wings-of-life');
       store.delete('scert-std4-english-turnip');
       store.delete('scert-std4-evs-water-cycle');
+
+      // Explicitly purge unwanted legacy chapter entries
+      store.delete('lesson-f6cd3799');
+      store.delete('lesson-f6cd3799-v1');
+      store.delete('lesson-10e22c9c');
+      store.delete('lesson-10e22c9c-v1');
+      store.delete('lesson-6aa2afdb');
+      store.delete('lesson-6aa2afdb-v1');
+      store.delete('lesson-6aa2afdb-v2');
+      store.delete('lesson-audit-actual');
+      store.delete('chap-audit-actual');
+      store.delete('chap-1e00f8e7e7');
+    } catch (_) {}
+
+    // Clean out any stored record in IndexedDB that matches unwanted chapter criteria
+    try {
+      const cursorReq = store.openCursor();
+      cursorReq.onsuccess = (e) => {
+        const cursor = (e.target as IDBRequest<IDBCursorWithValue>).result;
+        if (cursor) {
+          if (isUnwantedChapter(cursor.value)) {
+            cursor.delete();
+          }
+          cursor.continue();
+        }
+      };
     } catch (_) {}
     
     if (count === 0) {
       for (const lesson of INITIAL_LESSONS) {
-        store.put(lesson);
+        if (!isUnwantedChapter(lesson)) {
+          store.put(lesson);
+        }
       }
     } else {
       // Check and seed only missing canonical sample lessons
       for (const lesson of INITIAL_LESSONS) {
-        const checkReq = store.get(lesson.id);
-        checkReq.onsuccess = () => {
-          if (!checkReq.result) {
-            store.put(lesson);
-          }
-        };
+        if (!isUnwantedChapter(lesson)) {
+          const checkReq = store.get(lesson.id);
+          checkReq.onsuccess = () => {
+            if (!checkReq.result) {
+              store.put(lesson);
+            }
+          };
+        }
       }
     }
 
@@ -105,7 +156,7 @@ export async function getAllLessons(): Promise<Lesson[]> {
     const dbList = await fetchDbLessons();
     if (Array.isArray(dbList)) {
       dbList.forEach(l => {
-        if (l && l.id) lessonMap.set(l.id, l);
+        if (l && l.id && !isUnwantedChapter(l)) lessonMap.set(l.id, l);
       });
     }
   } catch (err) {
@@ -125,7 +176,7 @@ export async function getAllLessons(): Promise<Lesson[]> {
     });
 
     localLessons.forEach(l => {
-      if (l && l.id && !lessonMap.has(l.id)) {
+      if (l && l.id && !lessonMap.has(l.id) && !isUnwantedChapter(l)) {
         lessonMap.set(l.id, l);
       }
     });
@@ -135,23 +186,27 @@ export async function getAllLessons(): Promise<Lesson[]> {
 
   // 3. Fallback to initial lessons if empty
   if (lessonMap.size === 0) {
-    INITIAL_LESSONS.forEach(l => lessonMap.set(l.id, l));
+    INITIAL_LESSONS.forEach(l => {
+      if (!isUnwantedChapter(l)) lessonMap.set(l.id, l);
+    });
   }
 
-  // Active Class 4 curriculum subjects (Mathematics & Environmental Studies)
-  return Array.from(lessonMap.values()).filter(l => l.subject === 'Mathematics' || l.subject === 'Environmental Studies');
+  // Active Class 4 curriculum subjects (Mathematics, Environmental Studies & English)
+  return Array.from(lessonMap.values())
+    .filter(l => !isUnwantedChapter(l))
+    .filter(l => l.subject === 'Mathematics' || l.subject === 'Environmental Studies' || l.subject === 'English');
 }
 
 /**
  * Retrieves a single lesson by ID from backend SQLite first, then IndexedDB.
  */
 export async function getLessonById(id: string): Promise<Lesson | undefined> {
-  if (!id) return undefined;
+  if (!id || isUnwantedChapter({ id })) return undefined;
 
   // 1. Check authoritative backend SQLite first
   try {
     const dbLesson = await fetchDbLessonById(id);
-    if (dbLesson) {
+    if (dbLesson && !isUnwantedChapter(dbLesson)) {
       // Synchronize to IndexedDB for offline access
       try {
         await saveLesson(dbLesson);
@@ -169,17 +224,23 @@ export async function getLessonById(id: string): Promise<Lesson | undefined> {
     const local = await new Promise<Lesson | undefined>((resolve, reject) => {
       const tx = db.transaction(STORE_NAME, 'readonly');
       const store = tx.objectStore(STORE_NAME);
-      const request = store.get(id);
-      request.onsuccess = () => resolve(request.result as Lesson | undefined);
-      request.onerror = () => reject(request.error);
+      const req = store.get(id);
+      req.onsuccess = () => resolve(req.result);
+      req.onerror = () => reject(req.error);
     });
-    if (local) return local;
+    if (local && !isUnwantedChapter(local)) {
+      return local;
+    }
   } catch (err) {
-    console.warn(`IndexedDB read error for lesson ${id}:`, err);
+    console.warn('IndexedDB lesson fetch error, checking fallback initial lessons:', err);
   }
 
-  // 3. Fall back to canonical sample lessons
-  return INITIAL_LESSONS.find(l => l.id === id);
+  // 3. Fallback to initial lessons
+  const fallback = INITIAL_LESSONS.find(l => l.id === id);
+  if (fallback && !isUnwantedChapter(fallback)) {
+    return fallback;
+  }
+  return undefined;
 }
 
 /**
