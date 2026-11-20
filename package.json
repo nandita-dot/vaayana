@@ -30,17 +30,9 @@
     },
     "files": [
       "electron/**/*",
+      "!electron/bin/**/*",
       "frontend/dist/**/*",
       "package.json"
-    ],
-    "extraResources": [
-      {
-        "from": "electron/bin/vaayana-backend",
-        "to": "bin/vaayana-backend",
-        "filter": [
-          "**/*"
-        ]
-      }
     ],
     "win": {
       "target": [
@@ -51,7 +43,16 @@
           ]
         }
       ],
-      "icon": "electron/icons/icon.ico"
+      "icon": "electron/icons/icon.ico",
+      "extraResources": [
+        {
+          "from": "electron/bin/vaayana-backend",
+          "to": "bin/vaayana-backend",
+          "filter": [
+            "**/*"
+          ]
+        }
+      ]
     },
     "nsis": {
       "oneClick": false,

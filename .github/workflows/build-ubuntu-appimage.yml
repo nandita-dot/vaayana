@@ -60,6 +60,10 @@ jobs:
         run: |
           npm run frontend:build
 
+      - name: Clean stale build output
+        run: |
+          rm -rf dist-electron
+
       - name: Package Linux AppImage with electron-builder
         run: |
           npx electron-builder --linux AppImage --x64 --publish never
