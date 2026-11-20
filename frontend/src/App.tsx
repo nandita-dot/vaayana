@@ -10,6 +10,7 @@ import { ClassroomExperience } from './pages/ClassroomExperience';
 import { LibraryPage } from './pages/LibraryPage';
 import { LessonView } from './pages/LessonView';
 import { MotionBackground } from './components/animations/MotionBackground';
+import { UpdateNotification } from './components/UpdateNotification';
 
 const AnimatedRoutes: React.FC = () => {
   const location = useLocation();
@@ -64,6 +65,9 @@ const Layout: React.FC = () => {
 
       {/* Hide global footer during active classroom presentation */}
       {!isLessonMode && <Footer />}
+
+      {/* Desktop Automatic Update Notifications */}
+      <UpdateNotification />
     </div>
   );
 };

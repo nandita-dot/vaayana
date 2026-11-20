@@ -11,6 +11,7 @@ const path = require('path');
 const fs = require('fs');
 const http = require('http');
 const backendManager = require('./backend-manager.cjs');
+const updaterManager = require('./updater-manager.cjs');
 
 // Determine development mode
 const isDev = !app.isPackaged || process.env.NODE_ENV === 'development';
@@ -139,6 +140,7 @@ function createWindow() {
   });
 
   initializeAndLoad(mainWindow);
+  updaterManager.init(mainWindow);
 }
 
 /**
@@ -364,6 +366,7 @@ app.whenReady().then(async () => {
 });
 
 app.on('window-all-closed', () => {
+  updaterManager.destroy();
   backendManager.stop();
   if (process.platform !== 'darwin') {
     app.quit();
@@ -371,5 +374,6 @@ app.on('window-all-closed', () => {
 });
 
 app.on('before-quit', () => {
+  updaterManager.destroy();
   backendManager.stop();
 });

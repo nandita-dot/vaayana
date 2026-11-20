@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { 
@@ -16,6 +16,13 @@ export const Navbar: React.FC = () => {
   const { language, toggleLanguage, t } = useLanguage();
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [desktopVersion, setDesktopVersion] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (window.vaayanaDesktop?.getAppVersion) {
+      window.vaayanaDesktop.getAppVersion().then(setDesktopVersion).catch(() => {});
+    }
+  }, []);
 
   const navLinks = [
     { path: '/', labelEn: 'Home', labelMl: 'പ്രധാന പേജ്', icon: BookOpen },
@@ -96,6 +103,19 @@ export const Navbar: React.FC = () => {
 
           {/* Right Controls: Language Switcher & Fullscreen Button */}
           <div className="flex items-center gap-2.5">
+            {/* Desktop App Version & Update Status Button */}
+            {desktopVersion && (
+              <button
+                onClick={() => window.vaayanaDesktop?.checkForUpdates()}
+                className="hidden sm:flex items-center gap-2 px-3 py-2 rounded-xl bg-[#171320] hover:bg-[#1E182A] border border-[#2E263B] hover:border-[#7950B8]/50 text-[#EDE5F7] font-mono text-xs shadow-xs transition-all active:scale-95"
+                title="Check for updates / അപ്‌ഡേറ്റ് പരിശോധിക്കുക"
+                aria-label="Check for updates"
+              >
+                <span className="w-2 h-2 rounded-full bg-[#72D6B0] shadow-[0_0_6px_#72D6B0]" />
+                <span>v{desktopVersion}</span>
+              </button>
+            )}
+
             {/* Fullscreen Quick Button */}
             <button
               onClick={toggleFullscreen}
