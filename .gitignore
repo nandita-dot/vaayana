@@ -18,6 +18,10 @@ frontend/dist/
 frontend/build/
 dist/
 build/
+dist-electron/
+electron/bin/
+backend/dist/
+backend/build/
 .vite/
 *.tsbuildinfo
 coverage/
