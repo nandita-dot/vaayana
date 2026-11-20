@@ -1,0 +1,81 @@
+{
+  "name": "vaayana",
+  "productName": "VAAYANA",
+  "version": "2.1.0",
+  "description": "VAAYANA (വായന) — Kerala Class 4 Smart Classroom Teaching Platform",
+  "main": "electron/main.cjs",
+  "author": "ALP School Koottala",
+  "license": "MIT",
+  "scripts": {
+    "frontend:dev": "npm --prefix frontend run dev",
+    "frontend:build": "npm --prefix frontend run build",
+    "backend:build": "python backend/build_backend.py",
+    "desktop:dev": "electron .",
+    "desktop:build": "npm run frontend:build && npm run backend:build && electron-builder --win",
+    "pack:win": "electron-builder --win",
+    "pack:linux": "electron-builder --linux AppImage",
+    "pack:all": "electron-builder -wl"
+  },
+  "devDependencies": {
+    "electron": "^34.2.0",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "org.alpschool.vaayana",
+    "productName": "VAAYANA",
+    "copyright": "Copyright © 2026 ALP School Koottala",
+    "directories": {
+      "output": "dist-electron"
+    },
+    "files": [
+      "electron/**/*",
+      "frontend/dist/**/*",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "electron/bin/vaayana-backend",
+        "to": "bin/vaayana-backend",
+        "filter": [
+          "**/*"
+        ]
+      }
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "electron/icons/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "VAAYANA (വായന)",
+      "uninstallDisplayName": "VAAYANA (വായന)"
+    },
+    "linux": {
+      "target": [
+        {
+          "target": "AppImage",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "category": "Education",
+      "icon": "electron/icons/icon.png"
+    },
+    "publish": {
+      "provider": "github",
+      "owner": "alpschool",
+      "repo": "vaayana"
+    }
+  }
+}

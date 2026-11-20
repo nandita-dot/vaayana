@@ -1,3 +1,5 @@
+import os
+import sys
 import logging
 from contextlib import asynccontextmanager
 from fastapi import FastAPI, UploadFile, File, HTTPException
@@ -442,6 +444,35 @@ def regenerate_section(req: RegenerateSectionRequest):
         grade=req.grade,
         chapter_title=req.chapterTitle
     )
+
+# Static frontend serving for unified desktop execution
+import sys
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
+
+_dist_candidates = [
+    os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "frontend", "dist"),
+    os.path.join(os.path.dirname(os.path.abspath(__file__)), "dist"),
+    os.path.join(getattr(sys, "_MEIPASS", ""), "dist") if hasattr(sys, "_MEIPASS") else ""
+]
+FRONTEND_DIST = next((d for d in _dist_candidates if d and os.path.exists(d)), None)
+
+if FRONTEND_DIST:
+    _assets_dir = os.path.join(FRONTEND_DIST, "assets")
+    if os.path.exists(_assets_dir):
+        app.mount("/assets", StaticFiles(directory=_assets_dir), name="assets")
+
+    @app.get("/{full_path:path}")
+    async def serve_spa_frontend(full_path: str):
+        if full_path.startswith("api"):
+            raise HTTPException(status_code=404, detail="API endpoint not found")
+        file_path = os.path.join(FRONTEND_DIST, full_path)
+        if os.path.exists(file_path) and os.path.isfile(file_path):
+            return FileResponse(file_path)
+        index_file = os.path.join(FRONTEND_DIST, "index.html")
+        if os.path.exists(index_file):
+            return FileResponse(index_file)
+        raise HTTPException(status_code=404, detail="Frontend build index.html not found")
 
 if __name__ == "__main__":
     import uvicorn

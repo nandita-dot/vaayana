@@ -1,4 +1,5 @@
 import os
+import sys
 import json
 import sqlite3
 import hashlib
@@ -8,7 +9,33 @@ from datetime import datetime
 
 logger = logging.getLogger(__name__)
 
-DB_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data")
+def get_persistent_data_dir() -> str:
+    """
+    Resolves the persistent user-data directory for VAAYANA:
+    1. If VAAYANA_DATA_DIR environment variable is set (passed by Electron), use it.
+    2. If running as a frozen/standalone executable (PyInstaller):
+       - Windows: %APPDATA%/VAAYANA
+       - Linux: ~/.local/share/VAAYANA ($XDG_DATA_HOME/VAAYANA)
+    3. If running in development/web mode:
+       - Retain existing local data behavior: backend/data
+    """
+    env_dir = os.getenv("VAAYANA_DATA_DIR")
+    if env_dir:
+        return env_dir
+
+    is_frozen = hasattr(sys, "_MEIPASS") or getattr(sys, "frozen", False)
+    if is_frozen:
+        if sys.platform == "win32":
+            base = os.environ.get("APPDATA") or os.path.expanduser("~\\AppData\\Roaming")
+            return os.path.join(base, "VAAYANA")
+        else:
+            base = os.environ.get("XDG_DATA_HOME") or os.path.expanduser("~/.local/share")
+            return os.path.join(base, "VAAYANA")
+
+    # Development / web mode default
+    return os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data")
+
+DB_DIR = get_persistent_data_dir()
 DB_PATH = os.path.join(DB_DIR, "vaayana.db")
 
 def compute_sha256(data: bytes) -> str:
