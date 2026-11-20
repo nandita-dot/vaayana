@@ -12,8 +12,9 @@
     "backend:build": "python backend/build_backend.py",
     "desktop:dev": "electron .",
     "desktop:build": "npm run frontend:build && npm run backend:build && electron-builder --win",
+    "desktop:package:linux": "npm run frontend:build && python backend/build_backend.py && electron-builder --linux AppImage --x64",
     "pack:win": "electron-builder --win",
-    "pack:linux": "electron-builder --linux AppImage",
+    "pack:linux": "electron-builder --linux AppImage --x64",
     "pack:all": "electron-builder -wl"
   },
   "devDependencies": {
@@ -32,15 +33,6 @@
       "frontend/dist/**/*",
       "package.json"
     ],
-    "extraResources": [
-      {
-        "from": "electron/bin/vaayana-backend",
-        "to": "bin/vaayana-backend",
-        "filter": [
-          "**/*"
-        ]
-      }
-    ],
     "win": {
       "target": [
         {
@@ -50,7 +42,16 @@
           ]
         }
       ],
-      "icon": "electron/icons/icon.ico"
+      "icon": "electron/icons/icon.ico",
+      "extraResources": [
+        {
+          "from": "electron/bin/vaayana-backend",
+          "to": "bin/vaayana-backend",
+          "filter": [
+            "**/*"
+          ]
+        }
+      ]
     },
     "nsis": {
       "oneClick": false,
@@ -70,7 +71,23 @@
         }
       ],
       "category": "Education",
-      "icon": "electron/icons/icon.png"
+      "icon": "electron/icons/icon.png",
+      "artifactName": "${productName}-${version}-linux-${arch}.${ext}",
+      "synopsis": "Kerala Class 4 Smart Classroom Teaching Platform",
+      "desktop": {
+        "StartupWMClass": "VAAYANA"
+      },
+      "extraResources": [
+        {
+          "from": "electron/bin/vaayana-backend",
+          "to": "bin/vaayana-backend",
+          "filter": [
+            "!**/*.exe",
+            "!**/*.dll",
+            "**/*"
+          ]
+        }
+      ]
     },
     "publish": {
       "provider": "github",

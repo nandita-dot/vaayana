@@ -1,0 +1,79 @@
+name: Build Ubuntu AppImage
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - master
+    paths:
+      - 'backend/**'
+      - 'frontend/**'
+      - 'electron/**'
+      - 'package.json'
+      - '.github/workflows/build-ubuntu-appimage.yml'
+
+jobs:
+  build-appimage:
+    name: Package Ubuntu AppImage (x64)
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+          cache: 'pip'
+          cache-dependency-path: 'backend/requirements.txt'
+
+      - name: Set up Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install system dependencies & FUSE
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y tesseract-ocr tesseract-ocr-mal libfuse2
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r backend/requirements.txt
+          pip install pyinstaller
+
+      - name: Build standalone Linux FastAPI backend
+        run: |
+          python backend/build_backend.py
+          test -x electron/bin/vaayana-backend/vaayana-backend && echo "Linux backend successfully staged!"
+
+      - name: Install Node dependencies
+        run: |
+          npm install
+          npm --prefix frontend install
+
+      - name: Build React frontend
+        run: |
+          npm run frontend:build
+
+      - name: Package Linux AppImage with electron-builder
+        run: |
+          npx electron-builder --linux AppImage --x64
+
+      - name: Verify AppImage build output
+        run: |
+          echo "=== Built AppImage in dist-electron/ ==="
+          ls -lh dist-electron/*.AppImage
+
+      - name: Upload Distributable AppImage
+        uses: actions/upload-artifact@v4
+        with:
+          name: VAAYANA-Linux-x64-AppImage
+          path: dist-electron/*.AppImage
+          retention-days: 14
+          if-no-files-found: error
+

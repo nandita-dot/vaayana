@@ -67,6 +67,13 @@ class BackendManager {
     if (isPackaged) {
       const packagedExe = path.join(process.resourcesPath, 'bin', 'vaayana-backend', exeName);
       if (fs.existsSync(packagedExe)) {
+        if (!isWindows) {
+          try {
+            fs.chmodSync(packagedExe, 0o755);
+          } catch (e) {
+            // AppImage mount is read-only squashfs, binary already carries 0755
+          }
+        }
         return { command: packagedExe, args: [], env, isExecutable: true, description: 'Packaged Standalone Executable' };
       }
     }
@@ -126,6 +133,7 @@ class BackendManager {
 
     try {
       this.process = spawn(config.command, config.args, {
+        cwd: path.dirname(config.command),
         env: config.env,
         stdio: ['ignore', 'pipe', 'pipe'],
         detached: false
