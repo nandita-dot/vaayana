@@ -62,7 +62,7 @@ jobs:
 
       - name: Package Linux AppImage with electron-builder
         run: |
-          npx electron-builder --linux AppImage --x64
+          npx electron-builder --linux AppImage --x64 --publish never
 
       - name: Verify AppImage build output
         run: |
