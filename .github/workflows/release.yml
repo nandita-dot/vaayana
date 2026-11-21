@@ -69,26 +69,80 @@ jobs:
 
       - name: Package & Publish Linux AppImage to GitHub Releases
         env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          EP_GH_IGNORE_TIME: "true"
         run: |
           npx electron-builder --linux AppImage --x64 --publish always
 
-      - name: Verify Release Artifacts & Updater Metadata
+      - name: Ensure Assets Attached to GitHub Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          echo "=== Built Release Files in dist-electron/ ==="
-          ls -lh dist-electron/
-          if [ -f dist-electron/latest-linux.yml ]; then
-            echo "SUCCESS: Updater metadata latest-linux.yml generated!"
-            cat dist-electron/latest-linux.yml
-          else
-            echo "ERROR: latest-linux.yml not found!"
+          TAG="${{ inputs.release_tag }}"
+          if [ -z "$TAG" ]; then
+            if [ "${{ github.ref_type }}" = "tag" ]; then
+              TAG="${{ github.ref_name }}"
+            else
+              TAG="v$(node -p 'require("./package.json").version')"
+            fi
+          fi
+          echo "Target Release Tag: $TAG"
+
+          if [ ! -f dist-electron/latest-linux.yml ]; then
+            echo "ERROR: dist-electron/latest-linux.yml not found!"
             exit 1
           fi
+
+          # Collect release assets safely
+          ASSETS=(dist-electron/*.AppImage dist-electron/latest-linux.yml)
+          for b in dist-electron/*.blockmap; do
+            [ -f "$b" ] && ASSETS+=("$b")
+          done
+          echo "Assets to publish: ${ASSETS[*]}"
+
+          # Check if a release exists on GitHub for this tag
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            echo "Existing release found for $TAG. Attaching and updating release assets..."
+            gh release upload "$TAG" "${ASSETS[@]}" --clobber
+            gh release edit "$TAG" --draft=false || true
+          else
+            echo "Creating and publishing release for $TAG..."
+            gh release create "$TAG" "${ASSETS[@]}" \
+              --title "VAAYANA $TAG" \
+              --notes "VAAYANA Desktop Release $TAG"
+          fi
+
+      - name: Verify Published Release on GitHub
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TAG="${{ inputs.release_tag }}"
+          if [ -z "$TAG" ]; then
+            if [ "${{ github.ref_type }}" = "tag" ]; then
+              TAG="${{ github.ref_name }}"
+            else
+              TAG="v$(node -p 'require("./package.json").version')"
+            fi
+          fi
+          echo "=== Verifying GitHub Release for $TAG ==="
+          gh release view "$TAG"
+          
+          # Strictly verify that .AppImage and latest-linux.yml are present in remote release assets
+          REMOTE_ASSETS=$(gh release view "$TAG" --json assets --jq '.assets[].name')
+          echo "Remote assets listed on GitHub Release:"
+          echo "$REMOTE_ASSETS"
+
+          echo "$REMOTE_ASSETS" | grep -E '\.AppImage$' || (echo "ERROR: .AppImage asset missing from GitHub Release $TAG!" && exit 1)
+          echo "$REMOTE_ASSETS" | grep -E '^latest-linux\.yml$' || (echo "ERROR: latest-linux.yml asset missing from GitHub Release $TAG!" && exit 1)
+          echo "SUCCESS: AppImage and updater metadata confirmed present on GitHub Release $TAG!"
 
       - name: Upload Release Artifacts as Workflow Backup
         uses: actions/upload-artifact@v4
         with:
-          name: VAAYANA-Release-Backup-${{ github.ref_name }}
+          name: VAAYANA-Release-Backup-${{ inputs.release_tag || github.ref_name }}
           path: |
             dist-electron/*.AppImage
             dist-electron/latest-linux.yml

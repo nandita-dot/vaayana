@@ -93,7 +93,8 @@
     "publish": {
       "provider": "github",
       "owner": "nandita-dot",
-      "repo": "vaayana"
+      "repo": "vaayana",
+      "releaseType": "release"
     }
   },
   "dependencies": {
