@@ -1,7 +1,7 @@
 {
   "name": "vaayana",
   "productName": "VAAYANA",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "VAAYANA (വായന) — Kerala Class 4 Smart Classroom Teaching Platform",
   "main": "electron/main.cjs",
   "author": "ALP School Koottala",
